@@ -143,7 +143,7 @@ function Dashboard({headerFooter}) {
                                 href={linkStrava}>Click here</a></div>
               ) : (
                 <a
-                  href="http://www.strava.com/oauth/authorize?client_id=137895&response_type=code&redirect_uri=http://localhost:3000/account/dashboard&approval_prompt=force&scope=activity:read">
+                  href="http://www.strava.com/oauth/authorize?client_id=137895&response_type=code&redirect_uri=https://race-tips.vercel.app/account/dashboard&approval_prompt=force&scope=activity:read">
                   Connect With Strava
                 </a>
               )}
