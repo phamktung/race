@@ -207,3 +207,18 @@ export const getPostsByTax = async ( slug = '' ) => {
 			};
 		} );*/
 };
+
+
+/**
+ * Get Post all.
+ *
+ * @return {Promise<void>}
+ */
+export const getMultiplePosts = async ( ) => {
+	const res = await apiAxiosAll(`${ GET_POST_ENDPOINT }`);	
+	if ( 200 === res?.status ) {
+		return res.data;
+	} else {
+		return [];
+	}
+};
