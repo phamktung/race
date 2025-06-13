@@ -49,35 +49,24 @@ export const getFormattedDate = ( theDate = '', locales = 'en-us' ) => {
  *
  * @return {String} URL pathname.
  */
-export const getPathNameFromUrl = ( url = '' ) => {
+export const getPathNameFromUrl = ( url = '', type = '' ) => {
 	if ( ! url ) {
 		return '';
 	}
 	const beUrl = process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL;
 	let subUrl = url.split(beUrl);
 
-	if(subUrl && subUrl.length === 2){
-		return subUrl[1];
-	} else{
-		const theURL = new URL( url );
-		return theURL.pathname;
+	if(type === 'post_type'){
+		if(subUrl && subUrl.length === 2) {
+			return `/post${subUrl[1]}`;
+		}
+	} else {
+		if(subUrl && subUrl.length === 2){
+			return subUrl[1];
+		} else{
+			const theURL = new URL( url );
+			return theURL.pathname;
+		}
 	}
-}
 
-export const getLinkMenu = ( type='', url = '' ) => {
-	if ( ! url ) {
-		return '';
-	}
-	if(type == 'taxonomy'){
-
-	}
-	const beUrl = process.env.NEXT_PUBLIC_WORDPRESS_SITE_URL;
-	let subUrl = url.split(beUrl);
-
-	if(subUrl && subUrl.length === 2){
-		return subUrl[1];
-	} else{
-		const theURL = new URL( url );
-		return theURL.pathname;
-	}
 }

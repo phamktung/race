@@ -1,5 +1,5 @@
 /*--------------------
-Header Styles  
+Header Styles
 -----------------------*/
 .axil-header {
     padding: 0 60px;
@@ -48,10 +48,10 @@ Header Styles
                         @media #{$sm-layout} {
                             min-width: 174px;
                         }
-                       
+
                     }
                 }
-            } 
+            }
         }
         .mobile-search-wrapper {
             .search-button-toggle {
@@ -110,7 +110,7 @@ Header Styles
             }
         }
     }
-   
+
 
     &.header-dark {
         background: var(--color-extra04);
@@ -132,8 +132,8 @@ Header Styles
             li {
                 &.icon {
                     a {
-                        background: var(--color-extra05); 
-                        color: var(--color-white); 
+                        background: var(--color-extra05);
+                        color: var(--color-white);
                         &:hover {
                             background: var(--color-primary);
                             color: #fff;
@@ -158,7 +158,7 @@ Header Styles
 
 
 /*------------------------
-Search Styles  
+Search Styles
 --------------------------*/
 .axil-search {
     &.form-group {
@@ -195,11 +195,21 @@ button {
     &.search-button {
         i {
             color: var(--color-gray);
-        }   
+        }
     }
 }
 
 /* Metabar Block  */
+.header-icon-right{
+    width: 40px;
+    height: 40px;
+    background: #e1e1e1;
+    text-align: center;
+    line-height: 40px;
+    margin-right: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 .metabar-block {
     @extend %liststyle;
     display: flex;
@@ -222,7 +232,7 @@ button {
         }
         &.icon {
             a {
-                background: var(--color-lightest); 
+                background: var(--color-lightest);
                 width: 40px;
                 height: 40px;
                 line-height: 40px;
@@ -252,17 +262,17 @@ button {
             border-radius: 100%;
             max-height: 40px;
             min-width: 40px;
-            
-            @media #{$laptop-device} {
+
+            /*@media #{$laptop-device} {
                 max-height: 35px;
                 min-width: 35px;
-            }
+            }*/
         }
     }
 }
 
 
-// Mobile Menu Wrapper 
+// Mobile Menu Wrapper
 .hamburger-menu {
     margin-left: 20px;
     @media #{$md-layout} {
@@ -273,7 +283,7 @@ button {
     }
     .hamburger-inner {
         .icon {
-            background: var(--color-lightest); 
+            background: var(--color-lightest);
             width: 40px;
             height: 40px;
             line-height: 40px;
@@ -309,7 +319,7 @@ button {
 
 
 /*--------------------------
-    Header Style Three  
+    Header Style Three
 ---------------------------*/
 .header-top {
     background: var(--color-lightest);
@@ -319,7 +329,7 @@ button {
             @media #{$sm-layout} {
                 margin: 5px;
             }
-           
+
             a {
                 color: #878787;
                 font-size: 14px;
@@ -470,19 +480,19 @@ button {
                     }
                 }
             }
-        } 
+        }
 
         .header-search {
             .header-search-form {
                 flex-grow: 0;
             }
-        } 
+        }
     }
 }
 
 
 /*---------------------------
-    Header Style Four  
+    Header Style Four
 ----------------------------*/
 .axil-header {
     &.header-style-4 {
@@ -516,7 +526,7 @@ button {
                 }
             }
         }
-    
+
         .header-search {
             .header-search-form{
                 flex-grow: 0;
@@ -558,13 +568,13 @@ button {
                 }
             }
         }
-        
+
     }
 }
 
 
 /*---------------------------
-    Header Style Five 
+    Header Style Five
 ----------------------------*/
 .axil-header {
     &.header-style-5 {
@@ -631,7 +641,7 @@ button {
                 margin-bottom: 0px;
                 margin-top: 16px;
             }
-           
+
         }
 
     }
@@ -639,7 +649,7 @@ button {
 
 
 /*---------------------------
-    Header Style Six 
+    Header Style Six
 ----------------------------*/
 
 .axil-header {
@@ -671,7 +681,7 @@ button {
                 &.icon {
                     a {
                         color: #050505;
-                       
+
                     }
                 }
             }
@@ -696,7 +706,7 @@ button {
                 margin-bottom: 5px;
             }
         }
-        
+
     }
 }
 
