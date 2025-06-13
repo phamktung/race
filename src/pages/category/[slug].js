@@ -56,7 +56,10 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
 
 	return {
-		paths: [],
+		paths: [
+			{ params: { slug: 'blog' } },
+			{ params: { slug: 'tin-tuc' } },
+		],
 		fallback: false,
 	}
 }
