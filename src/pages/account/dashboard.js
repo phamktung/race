@@ -2,10 +2,7 @@ import InstagramOne from "../../common/components/instagram/InstagramOne";
 import BreadcrumbTwo from "../../common/elements/breadcrumb/breadcrumbTwo";
 import FooterThree from "../../common/elements/footer/FooterThree";
 import HeaderOne from "../../common/elements/header/HeaderOne";
-/*import { getAllPosts } from '../../../lib/api';
-import WidgetCategory from "../../common/components/sidebar/WidgetCategory";*/
 import WidgetSearch from "../../common/components/sidebar/WidgetSearch";
-/*import WidgetPostList from "../../common/components/sidebar/WidgetPostList";*/
 import WidgetSocialShare from "../../common/components/sidebar/WidgetSocialShare";
 import HeadTitle from "../../common/elements/head/HeadTitle";
 
@@ -18,7 +15,6 @@ import {apiAxiosAll} from "../../utils/api";
 import Link from "next/link";
 import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/config";
 import {getHeaderFooterData} from "../../utils/layout";
-import ClubLeaderboard from "../../common/components/ClubLeaderboard";
 
 const Dashboard = ({headerFooter}) => {
   const router = useRouter();
@@ -64,8 +60,7 @@ const Dashboard = ({headerFooter}) => {
   }, [userToken]);
 
   const getToken = async (code) => {
-    if (code) {
-      //console.log('code', code);
+    if (code) {      
       setLoading(true);
       const values = {
         client_id: STRAVA_CLIENT_ID,
@@ -74,7 +69,6 @@ const Dashboard = ({headerFooter}) => {
         grant_type: 'authorization_code'
       };
       const res = await apiAxiosAll(`https://www.strava.com/api/v3/oauth/token`, values, 'POST');
-
       if (res) {
         setUserToken(res);
       }
@@ -87,7 +81,6 @@ const Dashboard = ({headerFooter}) => {
       getToken(query.code).then();
     }
   }, [query.code]);
-
 
   const logout = () => {
     setUserInfo(null);
@@ -116,13 +109,9 @@ const Dashboard = ({headerFooter}) => {
       //console.log('activities', activities);
       setListActivities(activities);
     }
-
   };
 
-
   useEffect(() => {
-    //console.log(process.env.NEXT_PUBLIC_SITE_URL);
-
     const userSubject = JSON.parse(localStorage.getItem('race_user'));
     if (userSubject) {
       setUserInfo(userSubject);
@@ -153,7 +142,6 @@ const Dashboard = ({headerFooter}) => {
 
         message.success({content: resUpdate.data.message, duration: 2});
       } else {
-
         message.error({content: resUpdate.data.message, duration: 2});
       }
     }
@@ -266,15 +254,15 @@ const Dashboard = ({headerFooter}) => {
 
                   </div>
                 </div>
-                {accessTokenUpdate !=='' && <ClubLeaderboard clubId={'1536462'} accessToken={accessTokenUpdate}/>}
+                
 
               </Spin>
             </div>
             <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
               <div className="sidebar-inner">
-                {/*<WidgetCategory catData={allPosts} />*/}
+                
                 <WidgetSearch />
-                {/*<WidgetPostList postData={allPosts} />*/}
+                
                 <WidgetSocialShare />
               </div>
             </div>
@@ -291,20 +279,7 @@ const Dashboard = ({headerFooter}) => {
 export default Dashboard;
 
 export async function getStaticProps() {
-  const dataLayout = await getHeaderFooterData();
-  /*const allPosts = getAllPosts([
-    'id',
-    'title',
-    'featureImg',
-    'featured',
-    'date',
-    'slug',
-    'cate',
-    'cate_img',
-    'author_img',
-    'author_name',
-    'post_views',
-  ])*/
+  const dataLayout = await getHeaderFooterData(); 
 
   return {
     props: { headerFooter: dataLayout?.data ?? {} }
