@@ -222,7 +222,7 @@ const FooterOne = () => {
 
                   <Image
                     className="dark-logo"
-                    src={colorMode === "Dark" ? "/images/logo/logo-white2.webp" : "/images/logo/logo-black.webp"}
+                    src={"/images/logo/amrace-logo.png"}
                     alt="Logo Images"
                     height={37}
                     width={141}
@@ -288,15 +288,7 @@ const FooterOne = () => {
 
                     </Link>
                   </li>
-                  <li>
-                    <Link href="#">
 
-                        <span className="hover-flip-item">
-                          <span data-text="Blogar Store">Blogar Store</span>
-                        </span>
-
-                    </Link>
-                  </li>
                 </ul>
               </div>
             </div>

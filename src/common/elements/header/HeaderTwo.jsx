@@ -49,7 +49,7 @@ const HeaderTwo = ({darkLogo, lightLogo, postData }) => {
                           width={141}
                           height={37}
                           src={"/images/logo/amrace-logo.png" }
-                          alt="Blogar logo"
+                          alt="AM Race"
                           />
 
                   </Link>

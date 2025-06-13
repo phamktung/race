@@ -31,8 +31,8 @@ const MobileMenu = ({menuShow, menuHide}) => {
                         className="dark-logo"
                         width={141}
                         height={37}
-                        src={colorMode === "Dark" ? "/images/logo/logo-white2.webp" : "/images/logo/logo-black.webp" }
-                        alt="Blogar logo"
+                        src={"/images/logo/amrace-logo.png"}
+                        alt="AM Race"
                         />
 
                 </Link>
