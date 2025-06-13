@@ -50,10 +50,9 @@ export async function apiAxiosAll(
       params,
     })
     .then((res) => {
-
       return res;
     }).catch((error) => {
-      console.log(error?.response);
+      //console.log('er---:',error.code);
     });
 
 }

@@ -7,18 +7,19 @@ import {
 	GET_POSTS_ENDPOINT,
 	DEFAULT_ENDPOINT
 } from './constants/endpoints';
-import {apiAxios} from "./api";
+import {apiAxios, apiAxiosAll} from "./api";
 
 /**
  * Get Posts.
  *
  * @return {Promise<void>}
  */
-export const getPosts = async ( pageNo = 1 ) => {
+export const getBlogPosts = async ( pageNo = 1, category = '' ) => {
 	try {
-		const res = await apiAxios(`${ GET_POSTS_ENDPOINT }?page_no=${ pageNo }`);
-		/*console.log('post-1--:',res);*/
-		//console.log('post-status--:',res.data.status);
+		const res = await apiAxiosAll(`${ GET_POSTS_ENDPOINT }?page_no=${ pageNo }&category=${ category }`);
+		//console.log('post-1--:',`${ GET_POSTS_ENDPOINT }?page_no=${ pageNo }`);
+		//console.log('post-1--:',res);
+		//console.log('post-status--:',res.status);
 		if ( 200 === res?.data?.status ) {
 			//console.log('post-2--');
 			return res.data;
@@ -31,7 +32,7 @@ export const getPosts = async ( pageNo = 1 ) => {
 		}
 	}
 	catch (e) {
-		console.log(e);
+		//console.log(e);
 	}
 
 	/*return await axios.get( `${ GET_POSTS_ENDPOINT }?page_no=${ pageNo }` )
@@ -60,7 +61,7 @@ export const getPosts = async ( pageNo = 1 ) => {
  * @return {Promise<void>}
  */
 export const getPost = async ( postSlug = '' ) => {
-	const res = await apiAxios(`${ GET_POST_ENDPOINT }?slug=${ postSlug }&_embed`);
+	const res = await apiAxiosAll(`${ GET_POST_ENDPOINT }?slug=${ postSlug }&_embed`);
 	if ( 200 === res?.status ) {
 		return res.data;
 	} else {
@@ -115,7 +116,7 @@ export const getPages = async () => {
  */
 export const getPage = async ( pageSlug = '' ) => {
 	const res = await apiAxios(`${ GET_PAGES_ENDPOINT }?slug=${ pageSlug }&_embed`);
-	console.log('res1--',res);
+	//console.log('res1--',res);
 	if (res && 200 === res?.status ) {
 		return res.data;
 	} else {
