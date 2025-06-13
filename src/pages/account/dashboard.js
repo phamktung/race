@@ -2,10 +2,10 @@ import InstagramOne from "../../common/components/instagram/InstagramOne";
 import BreadcrumbTwo from "../../common/elements/breadcrumb/breadcrumbTwo";
 import FooterThree from "../../common/elements/footer/FooterThree";
 import HeaderOne from "../../common/elements/header/HeaderOne";
-import { getAllPosts } from '../../../lib/api';
-import WidgetCategory from "../../common/components/sidebar/WidgetCategory";
+/*import { getAllPosts } from '../../../lib/api';
+import WidgetCategory from "../../common/components/sidebar/WidgetCategory";*/
 import WidgetSearch from "../../common/components/sidebar/WidgetSearch";
-import WidgetPostList from "../../common/components/sidebar/WidgetPostList";
+/*import WidgetPostList from "../../common/components/sidebar/WidgetPostList";*/
 import WidgetSocialShare from "../../common/components/sidebar/WidgetSocialShare";
 import HeadTitle from "../../common/elements/head/HeadTitle";
 
@@ -17,8 +17,10 @@ import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
 import {apiAxiosAll} from "../../utils/api";
 import Link from "next/link";
 import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/config";
+import {getHeaderFooterData} from "../../utils/layout";
+import ClubLeaderboard from "../../common/components/ClubLeaderboard";
 
-const Dashboard = ({allPosts}) => {
+const Dashboard = ({headerFooter}) => {
   const router = useRouter();
   const {query} = router;
   const [userInfo, setUserInfo] = useState(null);
@@ -197,12 +199,11 @@ const Dashboard = ({allPosts}) => {
   return (
     <>
       <HeadTitle pageTitle="About Us" />
-      <HeaderOne postData={allPosts} />
+      <HeaderOne settings={headerFooter} />
       <BreadcrumbTwo
-        title="About Us"
-        paragraph="Wherever &amp; whenever you need us. We are here for you – contact us for all your support needs. <br />
-            be it technical, general queries or information support."
-        bgImae="url('images/bg/bg-image-1.webp')"
+        title="Dashboard"
+        paragraph=""
+        bgImae=""
       />
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
@@ -265,13 +266,15 @@ const Dashboard = ({allPosts}) => {
 
                   </div>
                 </div>
+                {accessTokenUpdate !=='' && <ClubLeaderboard clubId={'1536462'} accessToken={accessTokenUpdate}/>}
+
               </Spin>
             </div>
             <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
               <div className="sidebar-inner">
-                <WidgetCategory catData={allPosts} />
+                {/*<WidgetCategory catData={allPosts} />*/}
                 <WidgetSearch />
-                <WidgetPostList postData={allPosts} />
+                {/*<WidgetPostList postData={allPosts} />*/}
                 <WidgetSocialShare />
               </div>
             </div>
@@ -288,7 +291,8 @@ const Dashboard = ({allPosts}) => {
 export default Dashboard;
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts([
+  const dataLayout = await getHeaderFooterData();
+  /*const allPosts = getAllPosts([
     'id',
     'title',
     'featureImg',
@@ -300,9 +304,9 @@ export async function getStaticProps() {
     'author_img',
     'author_name',
     'post_views',
-  ])
+  ])*/
 
   return {
-    props: { allPosts }
+    props: { headerFooter: dataLayout?.data ?? {} }
   }
 }
