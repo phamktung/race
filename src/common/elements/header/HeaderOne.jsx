@@ -59,7 +59,7 @@ const HeaderOne = ({pClass, darkLogo, lightLogo, postData, settings}) => {
                                         width={141}
                                         height={37}
                                         src={(colorMode === "Dark" ? lightLogo || "/images/logo/logo-white2.webp" : darkLogo || "/images/logo/logo-black.webp") || "/images/logo/logo-black.webp" }
-                                        alt="Blogar logo"
+                                        alt="AM Race"
                                         />
 
                                 </Link>
@@ -107,28 +107,22 @@ const HeaderOne = ({pClass, darkLogo, lightLogo, postData, settings}) => {
                                 <ul className="metabar-block">
                                     <li className="icon">
                                         <Link href="#">
-
                                                 <i className="fas fa-bookmark" />
-
                                         </Link>
                                     </li>
                                     <li className="icon">
                                         <Link href="#">
-
                                                 <i className="fas fa-bell" />
-
                                         </Link>
                                     </li>
                                     <li>
                                         <Link href="#">
-
                                                 <Image
                                                 width={40}
                                                 height={40}
                                                 src="/images/others/author.webp"
                                                 alt="Author Images"
                                                 />
-
                                         </Link>
                                     </li>
                                 </ul>
