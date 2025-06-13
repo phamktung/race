@@ -6,11 +6,12 @@ import Next from './next';
 import {createPaginationLinks} from "../../../utils/pagination";
 
 const Pagination = ( { pagesCount, postName } ) => {
+	const router = useRouter();
 	if ( ! pagesCount || ! postName ) {
 		return null;
 	}
 
-	const router = useRouter();
+	
 	const currentPageNo = parseInt( router?.query?.pageNo ?? 1 ) || 1;
 
 	const paginationLinks = createPaginationLinks( currentPageNo, pagesCount );
