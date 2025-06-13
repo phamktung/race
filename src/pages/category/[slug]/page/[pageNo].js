@@ -72,7 +72,16 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
 
   return {
-    paths: [],
+    paths: [
+      { params: { pageNo: '1' } },
+      { params: { pageNo: '2' } },
+      { params: { pageNo: '3' } },
+      { params: { pageNo: '4' } },
+      { params: { pageNo: '5' } },
+      { params: { pageNo: '6' } },
+      { params: { pageNo: '7' } },
+      { params: { pageNo: '8' } },
+    ],
     fallback: false,
   }
 }

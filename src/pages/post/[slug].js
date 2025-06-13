@@ -8,7 +8,7 @@ import HeadTitle from "../../common/elements/head/HeadTitle";
 import SidebarOne from "../../common/components/sidebar/SidebarOne";
 import { slugify } from '../../common/utils';*/
 
-import {getPost} from "../../utils/blog";
+import {getMultiplePosts, getPost} from "../../utils/blog";
 import {sanitize} from "../../utils/miscellaneous";
 import HeaderNew from "../../common/elements/header/HeaderNew";
 import BreadcrumbOne from '../../common/elements/breadcrumb/breadcrumbOne';
@@ -74,11 +74,16 @@ export async function getStaticProps({ params }) {
 	}
 }
 export async function getStaticPaths() {
-
-	return {
-		paths: [],
-		fallback: false,
-	}
+  const postAllData = await getMultiplePosts();
+  const paths = postAllData.map(post => ({
+    params: {
+      slug: post.slug
+    }
+  }));
+  return {
+    paths,
+    fallback: false,
+  }
 }
 /*
 
