@@ -94,7 +94,7 @@ const HeaderOne = ({pClass, darkLogo, lightLogo, settings}) => {
         </div>
       </header>
 
-      <MobileMenu menuShow={showMMenu} menuHide={MobileHideHandler}/>
+      <MobileMenu menuShow={showMMenu} menuHide={MobileHideHandler} settings={settings}/>
       <Modal
         title={`Search`}
         open={isModalOpen}
