@@ -13,7 +13,7 @@ import PostSectionFive from '../common/components/post/PostSectionFive';
 import PostSectionSix from '../common/components/post/PostSectionSix';
 import SliderOne from '../common/components/slider/SliderOne';
 import {getHeaderFooterData} from "../utils/layout";
-
+import SliderRace from "../common/components/slider/SliderRace";
 
 const HomeDefault = ({allPosts, headerFooter}) => {
 
@@ -23,7 +23,7 @@ const HomeDefault = ({allPosts, headerFooter}) => {
     <>
       <HeadTitle pageTitle="AM Race" />
       <HeaderOne postData={allPosts} settings={headerFooter}/>
-      <SliderOne postData={allPosts} />
+      <SliderRace post_type={'camis_slider'} taxonomy={'slider_cat'} slug={'home'} />
       <PostSectionOne postData={allPosts}/>
       {/*<PostSectionTwo postData={allPosts} adBanner={true} />*/}
       <CategoryList cateData={allPosts}/>
