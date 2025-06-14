@@ -24,7 +24,7 @@ const CategoryPagination = ( { pagesCount, postName } ) => {
 
         return (
           'number' === typeof pageNo ? (
-            <Link key={ `id-${ index }` } href={ paginationLink } >
+            <Link key={ `id-${ index }` } href={ paginationLink } className={pageNo === currentPageNo ? 'current' : ''}>
 
               { pageNo }
 
