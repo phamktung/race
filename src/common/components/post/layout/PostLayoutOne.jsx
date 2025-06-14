@@ -1,20 +1,20 @@
 import Link from "next/link";
-import Image from "next/image";
-import { slugify } from "../../../utils";
+/*import Image from "next/image";
+import { slugify } from "../../../utils";*/
 
 const PostLayoutOne = ({ postData, itemShow }) => {
 
-  const featuredPost = postData.filter(post => post.featured === true );
+  //const featuredPost = postData.filter(post => post.featured === true );
 
   return (
     <>
-      {featuredPost.slice(0, itemShow).map((data) => (
+      {postData.slice(0, itemShow).map((data) => (
         <div
           className="col-lg-6 col-xl-6 col-md-12 col-12 mt--30"
           key={data.slug}>
           <div className="content-block content-direction-column post-horizontal thumb-border-rounded">
             <div className="post-content">
-              <div className="post-cat">
+              {/*<div className="post-cat">
                 <div className="post-cat-list">
                   <Link href={`/category/${slugify(data.cate)}`}>
 
@@ -24,13 +24,13 @@ const PostLayoutOne = ({ postData, itemShow }) => {
 
                   </Link>
                 </div>
-              </div>
+              </div>*/}
               <h4 className="title">
                 <Link href={`/post/${data.slug}`}>
-                  {data.title}
+                  {data.title.rendered}
                 </Link>
               </h4>
-              <div className="post-meta">
+              {/*<div className="post-meta">
                 <div className="post-author-avatar border-rounded">
                   <Image
                     src={data.author_img}
@@ -56,9 +56,9 @@ const PostLayoutOne = ({ postData, itemShow }) => {
                     <li>{data.post_views}</li>
                   </ul>
                 </div>
-              </div>
+              </div>*/}
             </div>
-            {data.featureImg ?
+            {/*{data.featureImg ?
             <div className="post-thumbnail">
               <Link href={`/post/${data.slug}`}>
 
@@ -72,7 +72,7 @@ const PostLayoutOne = ({ postData, itemShow }) => {
 
               </Link>
             </div>
-            : "" }
+            : "" }*/}
           </div>
         </div>
       ))}
