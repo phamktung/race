@@ -47,7 +47,9 @@ const MobileMenu = ({menuShow, menuHide, settings}) => {
         <ul className="mainmenu">
           {MenuData.map((data, index) => (
             <li className={`${data.children && data?.children?.length > 0 && "menu-item-has-children"}`} key={data?.ID}>
+              <Link href={getPathNameFromUrl(data?.url ?? '', data?.type) || '/'}>
               {data.title}
+              </Link>
               {(data.children && data?.children?.length > 0) ?
                 <ul className="axil-submenu">
                   {data.children.map((childItem) => (
