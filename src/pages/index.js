@@ -14,8 +14,9 @@ import PostSectionSix from '../common/components/post/PostSectionSix';
 import SliderOne from '../common/components/slider/SliderOne';
 import {getHeaderFooterData} from "../utils/layout";
 import SliderRace from "../common/components/slider/SliderRace";
+import {getRecentPosts} from "../utils/blog";
 
-const HomeDefault = ({allPosts, headerFooter}) => {
+const HomeDefault = ({allPosts, headerFooter, recent}) => {
 
   const videoPost = allPosts.filter(post => post.postFormat === "video");
 
@@ -24,7 +25,7 @@ const HomeDefault = ({allPosts, headerFooter}) => {
       <HeadTitle pageTitle="AM Race" />
       <HeaderOne postData={allPosts} settings={headerFooter}/>
       <SliderRace post_type={'camis_slider'} taxonomy={'slider_cat'} slug={'home'} />
-      <PostSectionOne postData={allPosts}/>
+      <PostSectionOne postData={recent} title={'Bài viết mới'}/>
       {/*<PostSectionTwo postData={allPosts} adBanner={true} />*/}
       <CategoryList cateData={allPosts}/>
       {/*<PostSectionSix postData={allPosts} />*/}
@@ -44,7 +45,7 @@ export default HomeDefault;
 
 export async function getStaticProps() {
   const dataLayout = await getHeaderFooterData();
-
+  const recent = await getRecentPosts();
   const allPosts = getAllPosts([
     'id',
     'title',
@@ -64,7 +65,7 @@ export async function getStaticProps() {
   ])
 
   return {
-    props: { allPosts, headerFooter: dataLayout?.data ?? {} }
+    props: { allPosts, headerFooter: dataLayout?.data ?? {}, recent }
   }
 }
 
