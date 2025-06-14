@@ -23,6 +23,7 @@ const HomeDefault = ({allPosts, headerFooter}) => {
     <>
       <HeadTitle pageTitle="AM Race" />
       <HeaderOne postData={allPosts} settings={headerFooter}/>
+      <SliderOne postData={allPosts} />
       <PostSectionOne postData={allPosts}/>
       {/*<PostSectionTwo postData={allPosts} adBanner={true} />*/}
       <CategoryList cateData={allPosts}/>
