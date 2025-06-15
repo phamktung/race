@@ -14,20 +14,15 @@ const CategoryPagination = ( { pagesCount, postName } ) => {
   const paginationLinks = createPaginationLinks( currentPageNo, pagesCount );
 
   return (
-    <div className="flex justify-center my-8">
-
+    <div className="camis-pagination flex justify-center my-8">
       <Previous currentPageNo={ currentPageNo } postName={ postName }/>
 
       { paginationLinks.map( ( pageNo, index ) => {
-
         const paginationLink = `/category/${ postName }/page/${ pageNo }/`;
-
         return (
           'number' === typeof pageNo ? (
-            <Link key={ `id-${ index }` } href={ paginationLink } >
-
+            <Link key={ `id-${ index }` } href={ paginationLink } className={pageNo === currentPageNo ? 'current' : ''}>
               { pageNo }
-
             </Link>
           ) : (
             // If its "..."

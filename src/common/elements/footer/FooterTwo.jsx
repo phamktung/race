@@ -80,15 +80,7 @@ const FooterTwo = () => {
 
                     </Link>
                   </li>
-                  <li>
-                  <Link href="#">
 
-                      <span className="hover-flip-item">
-                        <span data-text="Blogar Store">Blogar Store</span>
-                      </span>
-
-                    </Link>
-                  </li>
                 </ul>
               </div>
             </div>

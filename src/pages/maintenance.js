@@ -24,8 +24,8 @@ const Maintenance = () => {
                                                 className="dark-logo"
                                                 width={153}
                                                 height={40}
-                                                src={(colorMode === "Dark" ? "/images/logo/logo-white2.webp" : "/images/logo/logo-black.webp") || "/images/logo/logo-black.webp"}
-                                                alt="Blogar logo"
+                                                src={"/images/logo/amrace-logo.png"}
+                                                alt="AM Race"
                                             />
 
                                     </Link>

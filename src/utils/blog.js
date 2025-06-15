@@ -222,3 +222,12 @@ export const getMultiplePosts = async ( ) => {
 		return [];
 	}
 };
+
+export const getRecentPosts = async ( per_page = 6) => {
+	const res = await apiAxiosAll(`${ GET_POST_ENDPOINT }?per_page=${per_page}&orderby=date&order=desc`);
+	if ( 200 === res?.status ) {
+		return res.data;
+	} else {
+		return [];
+	}
+};
