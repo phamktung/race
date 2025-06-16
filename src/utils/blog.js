@@ -232,3 +232,19 @@ export const getRecentPosts = async ( per_page = 6) => {
 		return [];
 	}
 };
+
+/**
+ * getRelatedPosts
+ */
+
+export async function getRelatedPosts(id = '', post_type = 'post',  per_page = 3) {
+	const res = await apiAxios(`${ DEFAULT_ENDPOINT }/camis/v1/related?post_type=${post_type}&id=${id}&per_page=${per_page}`);
+	if ( 200 === res?.data?.status ) {
+		return res;
+	} else {
+		return {
+			posts_data: {},
+			error: 'Post not found',
+		};
+	}
+}
