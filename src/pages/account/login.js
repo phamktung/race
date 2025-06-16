@@ -50,13 +50,12 @@ const Login = ({headerFooter}) => {
   return (
     <>
       <HeadTitle pageTitle="Login" />
-      <HeaderOne postData={headerFooter} />
-      {/*<BreadcrumbTwo
-        title="About Us"
-        paragraph="Wherever &amp; whenever you need us. We are here for you – contact us for all your support needs. <br />
-            be it technical, general queries or information support."
-        bgImae="url('images/bg/bg-image-1.webp')"
-      />*/}
+      <HeaderOne settings={headerFooter} />
+      <BreadcrumbTwo
+          title="Login"
+          paragraph=""
+          bgImae=""
+      />
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
           <div className="row">
