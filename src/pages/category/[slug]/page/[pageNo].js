@@ -47,17 +47,15 @@ export default PageNoCategory;
 
 
 export async function getStaticProps({ params }) {
-
   const { pageNo, slug } = params || {};
   const blogData = await getBlogPosts(pageNo, slug);
   const dataLayout = await getHeaderFooterData();
   return {
-    //props: {blogData}
     props: {
-      postData: blogData ?? {}, headerFooter: dataLayout?.data ?? {}
+      blogData,
+      headerFooter: dataLayout?.data ?? {}
     }
   }
-
 }
 
 export async function getStaticPaths() {
@@ -72,6 +70,8 @@ export async function getStaticPaths() {
       { params: { slug: 'blog', pageNo: '6' } },
       { params: { slug: 'blog', pageNo: '7' } },
       { params: { slug: 'blog', pageNo: '8' } },
+      { params: { slug: 'blog', pageNo: '9' } },
+      { params: { slug: 'blog', pageNo: '10' } },
       { params: { slug: 'tin-tuc', pageNo: '1' } },
       { params: { slug: 'tin-tuc', pageNo: '2' } },
       { params: { slug: 'tin-tuc', pageNo: '3' } },
@@ -80,6 +80,8 @@ export async function getStaticPaths() {
       { params: { slug: 'tin-tuc', pageNo: '6' } },
       { params: { slug: 'tin-tuc', pageNo: '7' } },
       { params: { slug: 'tin-tuc', pageNo: '8' } },
+      { params: { slug: 'tin-tuc', pageNo: '9' } },
+      { params: { slug: 'tin-tuc', pageNo: '10' } },
     ],
     fallback: false,
   }
