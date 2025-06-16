@@ -1,17 +1,3 @@
-/*import { getAllPosts } from '../../../lib/api';*/
-/*import InstagramOne from '../../common/components/instagram/InstagramOne';
-import PostLayoutTwo from '../../common/components/post/layout/PostLayoutTwo';
-import BreadcrumbOne from '../../common/elements/breadcrumb/breadcrumbOne';*/
-/*import FooterOne from '../../../../common/elements/footer/FooterOne';
-import HeadTitle from "../../../../common/elements/head/HeadTitle";
-import HeaderOne from '../../../common/elements/header/HeaderOne';*/
-/*import SidebarOne from "../../common/components/sidebar/SidebarOne";
-import { slugify } from '../../common/utils';*/
-/*import {getBlogPosts} from "../../utils/blog";*/
-/*import Blogs from "../../../../common/components/blog";
-import Pagination from "../../../../common/components/pagination";
-import {getBlogPosts} from "../../../../utils/blog";*/
-
 import HeadTitle from "../../../../common/elements/head/HeadTitle";
 import Blogs from "../../../../common/components/blog";
 import FooterOne from "../../../../common/elements/footer/FooterOne";
@@ -19,15 +5,17 @@ import {getBlogPosts} from "../../../../utils/blog";
 
 import {useRouter} from "next/router";
 import CategoryPagination from "../../../../common/components/category-pagination";
+import {getHeaderFooterData} from "../../../../utils/layout";
+import HeaderOne from "../../../../common/elements/header/HeaderOne";
 
-const PageNoCategory = ({blogData}) => {
+const PageNoCategory = ({blogData, headerFooter}) => {
   //console.log('postData',blogData);
   const router = useRouter();
   const slug = router.query?.slug;
   return (
     <>
       <HeadTitle pageTitle="Category Archive"/>
-      {/*<HeaderOne postData={allPosts} />*/}
+      <HeaderOne settings={headerFooter}/>
       {/*<BreadcrumbOne title={postData[0].cate} />*/}
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
@@ -62,9 +50,12 @@ export async function getStaticProps({ params }) {
 
   const { pageNo, slug } = params || {};
   const blogData = await getBlogPosts(pageNo, slug);
-
+  const dataLayout = await getHeaderFooterData();
   return {
-    props: {blogData}
+    //props: {blogData}
+    props: {
+      postData: blogData ?? {}, headerFooter: dataLayout?.data ?? {}
+    }
   }
 
 }
