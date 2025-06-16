@@ -11,9 +11,20 @@ const WordPressSearch = () => {
 
   const handleSearch = async () => {
     setLoading(true);
+    const str = encodeURIComponent(query?.trim());
     try {
       const response = await fetch(
-        `${DEFAULT_ENDPOINT}/wp/v2/search?search=${encodeURIComponent(query)}&subtype=post&per_page=10`
+        `${DEFAULT_ENDPOINT}/wp/v2/search?search=${str}&subtype=any&per_page=100`,
+        {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          next: {
+            tags: [`search-${str}`],
+            revalidate: 3600
+          }
+        }
       );
       if (!response.ok) {
         throw new Error('Network response was not ok');
