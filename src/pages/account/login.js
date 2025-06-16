@@ -2,10 +2,10 @@ import InstagramOne from "../../common/components/instagram/InstagramOne";
 import BreadcrumbTwo from "../../common/elements/breadcrumb/breadcrumbTwo";
 import FooterThree from "../../common/elements/footer/FooterThree";
 import HeaderOne from "../../common/elements/header/HeaderOne";
-import { getAllPosts } from '../../../lib/api';
-import WidgetCategory from "../../common/components/sidebar/WidgetCategory";
+/*import { getAllPosts } from '../../../lib/api';
+import WidgetCategory from "../../common/components/sidebar/WidgetCategory";*/
 import WidgetSearch from "../../common/components/sidebar/WidgetSearch";
-import WidgetPostList from "../../common/components/sidebar/WidgetPostList";
+/*import WidgetPostList from "../../common/components/sidebar/WidgetPostList";*/
 import WidgetSocialShare from "../../common/components/sidebar/WidgetSocialShare";
 import HeadTitle from "../../common/elements/head/HeadTitle";
 import {Button, Form, Input, message} from "antd";
@@ -15,8 +15,9 @@ import {apiAxiosAll} from "../../utils/api";
 import {useRouter} from 'next/router';
 import Link from 'next/link';
 import {useState} from "react";
+import {getHeaderFooterData} from "../../utils/layout";
 
-const Login = ({allPosts}) => {
+const Login = ({headerFooter}) => {
   const [form] = Form.useForm();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -48,14 +49,14 @@ const Login = ({allPosts}) => {
   }
   return (
     <>
-      <HeadTitle pageTitle="About Us" />
-      <HeaderOne postData={allPosts} />
-      <BreadcrumbTwo
+      <HeadTitle pageTitle="Login" />
+      <HeaderOne postData={headerFooter} />
+      {/*<BreadcrumbTwo
         title="About Us"
         paragraph="Wherever &amp; whenever you need us. We are here for you – contact us for all your support needs. <br />
             be it technical, general queries or information support."
         bgImae="url('images/bg/bg-image-1.webp')"
-      />
+      />*/}
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
           <div className="row">
@@ -96,9 +97,9 @@ const Login = ({allPosts}) => {
             </div>
             <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
               <div className="sidebar-inner">
-                <WidgetCategory catData={allPosts} />
+                {/*<WidgetCategory catData={allPosts} />*/}
                 <WidgetSearch />
-                <WidgetPostList postData={allPosts} />
+                {/*<WidgetPostList postData={allPosts} />*/}
                 <WidgetSocialShare />
               </div>
             </div>
@@ -115,21 +116,8 @@ const Login = ({allPosts}) => {
 export default Login;
 
 export async function getStaticProps() {
-  const allPosts = getAllPosts([
-    'id',
-    'title',
-    'featureImg',
-    'featured',
-    'date',
-    'slug',
-    'cate',
-    'cate_img',
-    'author_img',
-    'author_name',
-    'post_views',
-  ])
-
+  const dataLayout = await getHeaderFooterData();
   return {
-    props: { allPosts }
+    props: { headerFooter: dataLayout?.data ?? {} }
   }
 }

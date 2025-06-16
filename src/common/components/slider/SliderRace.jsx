@@ -1,28 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
-import {useEffect, useState} from "react";
-import {apiAxios} from "../../../utils/api";
-import {DEFAULT_ENDPOINT} from "../../../utils/constants/endpoints";
 
-const SliderRace = ({ post_type, taxonomy, slug }) => {
-
-  const [slidePostNew, setSlidePostNew]  = useState([]);
-  const getSlider = async ()=>{
-    try {
-      const res = await apiAxios(`${ DEFAULT_ENDPOINT }/camis/v1/posts-by-tax?post_type=${post_type}&taxonomy=${taxonomy}&slug=${slug}`);
-      /*console.log('---', res);*/
-      if ( 200 === res.data.status ) {
-        setSlidePostNew(res.data?.data?.posts);
-      }
-    } catch (e) {
-      //console.log('errr',e);
-    }
-  };
-
-  useEffect(()=>{
-    getSlider().then()
-  }, []);
+const SliderRace = ({ sliderData }) => {
 
   function SlickNextArrow(props) {
     const { className, onClick } = props;
@@ -65,7 +45,7 @@ const SliderRace = ({ post_type, taxonomy, slug }) => {
           <div className="row">
             <div className="col-lg-12">
               <Slider {...slideSettings} className="slider-activation axil-slick-arrow">
-                {slidePostNew.slice(0, 3).map((data) => (
+                {sliderData.slice(0, 3).map((data) => (
                   <div className="content-block" key={data.slug}>
                     {/* Start Post Thumbnail  */}
                     {data.attachment_image?.img_src[0] ?
