@@ -13,7 +13,7 @@ import {ExclamationCircleOutlined} from "@ant-design/icons";
 import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
 import {apiAxiosAll} from "../../utils/api";
 import Link from "next/link";
-import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET, PUBLIC_SITE_URL} from "../../utils/constants/config";
+import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/config";
 import {getHeaderFooterData} from "../../utils/layout";
 
 const Dashboard = ({headerFooter}) => {
@@ -124,7 +124,7 @@ const Dashboard = ({headerFooter}) => {
     }
   }, []);
 
-  const urlStrava = `http://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${PUBLIC_SITE_URL}/account/dashboard&approval_prompt=force&scope=activity:read`
+  const urlStrava = `http://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_SITE_URL}/account/dashboard&approval_prompt=force&scope=activity:read`
 
   const updateTokenDeauthorization = async () => {
     setLoading(true);
