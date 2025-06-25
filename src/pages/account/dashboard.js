@@ -109,7 +109,7 @@ const Dashboard = ({headerFooter}) => {
       setListActivities(activities);
     }
   };
-  /*
+  
   useEffect(() => {
     const userSubject = JSON.parse(localStorage.getItem('race_user'));
     if (userSubject) {
@@ -117,12 +117,14 @@ const Dashboard = ({headerFooter}) => {
       if (userSubject.strava_id != '') {
         setLinkStrava(`https://www.strava.com/athletes/${userSubject.strava_id}`)
       }
+      
       if (userSubject.refresh_token != '') {
-        getActivities(userSubject.refresh_token).then();
+        //getActivities(userSubject.refresh_token).then();
       }
+      
     }
   }, []); 
-  */
+  
 
   const urlStrava = `http://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_SITE_URL}/account/dashboard&approval_prompt=force&scope=activity:read`
 
@@ -146,14 +148,12 @@ const Dashboard = ({headerFooter}) => {
       }
     }
     setLoading(false);
-
   };
   const handleDeauthorization = async () => {
     if (accessTokenUpdate != '') {
       const values = {
         access_token: accessTokenUpdate
       };
-
       const deauthorization = await apiAxiosAll(`https://www.strava.com/oauth/deauthorize`, values, 'POST');
       console.log('handleDeauthorization', deauthorization);
       if (deauthorization.status === 200) {
@@ -173,15 +173,11 @@ const Dashboard = ({headerFooter}) => {
           "message": "Login successful"
         };
         localStorage.setItem('race_user', JSON.stringify(obj));
-
         setUserInfo(obj);
-
       } else {
-
         message.error({content: 'Hủy kết nối strava không thành công!', duration: 2});
       }
     }
-
   };
 
   return (
@@ -251,25 +247,20 @@ const Dashboard = ({headerFooter}) => {
                         ))}
                       </>
                     )}
-
                   </div>
-                </div>
-                
+                </div>              
 
               </Spin>
             </div>
             <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
-              <div className="sidebar-inner">
-                
-                <WidgetSearch />
-                
+              <div className="sidebar-inner">                
+                <WidgetSearch />                
                 <WidgetSocialShare />
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <InstagramOne parentClass="bg-color-grey" />
       <FooterThree />
     </>
@@ -280,7 +271,6 @@ export default Dashboard;
 
 export async function getStaticProps() {
   const dataLayout = await getHeaderFooterData(); 
-
   return {
     props: { headerFooter: dataLayout?.data ?? {} }
   }
