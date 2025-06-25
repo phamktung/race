@@ -105,12 +105,11 @@ const Dashboard = ({headerFooter}) => {
       });
 
       const activitiesRequest = await fetch(`${activityUrl}?${activityParams}`);
-      const activities = await activitiesRequest.json();
-      //console.log('activities', activities);
+      const activities = await activitiesRequest.json();      
       setListActivities(activities);
     }
   };
-
+  /*
   useEffect(() => {
     const userSubject = JSON.parse(localStorage.getItem('race_user'));
     if (userSubject) {
@@ -122,7 +121,8 @@ const Dashboard = ({headerFooter}) => {
         getActivities(userSubject.refresh_token).then();
       }
     }
-  }, []);
+  }, []); 
+  */
 
   const urlStrava = `http://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_SITE_URL}/account/dashboard&approval_prompt=force&scope=activity:read`
 
