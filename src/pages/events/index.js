@@ -8,22 +8,39 @@ import WidgetSearch from "../../common/components/sidebar/WidgetSearch";
 /*import WidgetPostList from "../../common/components/sidebar/WidgetPostList";*/
 import WidgetSocialShare from "../../common/components/sidebar/WidgetSocialShare";
 import HeadTitle from "../../common/elements/head/HeadTitle";
-import {Button, Form, Input, message} from "antd";
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import {message, Spin} from "antd";
+/*import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
-import {apiAxiosAll} from "../../utils/api";
-import {useRouter} from 'next/router';
-import Link from 'next/link';
-import {useEffect, useState} from "react";
+import {apiAxiosAll} from "../../utils/api";*/
+/*import {useRouter} from 'next/router';*/
+/*import Link from 'next/link';*/
+import {useState} from "react";
 import {getHeaderFooterData} from "../../utils/layout";
 import {getEvents} from "../../utils/blog";
+import {createOrderWoo} from "../../utils/woo";
+
 
 const Events = ({postData, headerFooter}) => {
-    const [form] = Form.useForm();
-    const router = useRouter();
+    /*const [form] = Form.useForm();*/
+    /*const router = useRouter();*/
     const [loading, setLoading] = useState(false);   
     console.log('postData',postData);
     console.log('posts_data',postData.posts_data);
+
+    const handleJoin = async () => {
+        const userSubject = JSON.parse(localStorage.getItem('race_user'));
+        if (userSubject) {
+            setLoading(true);
+            const res = await createOrderWoo(postData.posts_data[0].product_id, 4);
+            console.log('handleJoin', res)
+            if (res) {
+                message.success(res.message);
+            }
+            setLoading(false);
+        } else {
+            message.error({content: "Bạn cần đăng nhập để đăng ký tham gia.", duration: 3});
+        }
+    }
     return (
         <>
             <HeadTitle pageTitle="Events" />
@@ -37,6 +54,7 @@ const Events = ({postData, headerFooter}) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 col-xl-8">
+                            <Spin spinning={loading}>
                             <h1 className="text-2xl font-bold mb-6">Các giải chạy đang diễn ra</h1>
                             {postData.posts_data && postData.posts_data.map((event) => (
                                 <div
@@ -56,11 +74,12 @@ const Events = ({postData, headerFooter}) => {
                                     )}
                                   </p>
                     
-                                  {event.status === 'open' && event.product_url && (                                    
-                                      <div>Tham gia ngay</div>                                    
+                                  {event.status === 'open' && event.product_id && (
+                                      <div onClick={handleJoin}>Tham gia ngay</div>
                                   )}
                                 </div>
                               ))}
+                            </Spin>
                         </div>
                         <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
                             <div className="sidebar-inner">                               

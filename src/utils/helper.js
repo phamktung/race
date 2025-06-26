@@ -1,5 +1,5 @@
 import axios from "axios";
-/*import qs from "qs";*/
+
 
 /**
  * A method to call API with given settings
@@ -89,3 +89,5 @@ export async function callApi(endpoint, method = "GET", body = null, headers = n
     }
   });
 }
+
+
