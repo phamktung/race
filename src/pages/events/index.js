@@ -37,12 +37,35 @@ const Events = ({postData, headerFooter}) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 col-xl-8">
-                            <div className="card">
-                                <h4 className="card-header">Events</h4>
-                                <div className="card-body">
-                                    
+                            <h1 className="text-2xl font-bold mb-6">Các giải chạy đang diễn ra</h1>
+                            {postData?.posts_data?.map((event) => (
+                                <div
+                                  key={event.id}
+                                  className="border p-4 rounded-xl shadow-sm bg-white"
+                                >
+                                  <h2 className="text-lg font-semibold">{event.title}</h2>
+                                  <p className="text-gray-600">
+                                    {event.start_date} → {event.end_date}
+                                  </p>
+                                  <p className="text-sm text-gray-500">
+                                    Trạng thái:{' '}
+                                    {event.status === 'open' ? (
+                                      <span className="text-green-600">Đang mở</span>
+                                    ) : (
+                                      <span className="text-red-600">Đã kết thúc</span>
+                                    )}
+                                  </p>
+                    
+                                  {event.status === 'open' && event.product_url && (
+                                    {/*<a
+                                      href={event.product_url}
+                                      className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+                                    >*/}
+                                      Tham gia ngay
+                                    {/*</a>*/}
+                                  )}
                                 </div>
-                            </div>
+                              ))}
                         </div>
                         <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
                             <div className="sidebar-inner">
