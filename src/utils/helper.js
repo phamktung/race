@@ -1,6 +1,63 @@
 import axios from "axios";
-/*import qs from "qs";*/
+import {
+	GET_PAGES_ENDPOINT,
+	GET_POST_ENDPOINT,
+	GET_POSTS_ENDPOINT,
+	DEFAULT_ENDPOINT
+} from './constants/endpoints';
+import {WOOCOMMERCE_API_URL, WOOCOMMERCE_CONSUMER_KEY, WOOCOMMERCE_CONSUMER_SECRET} from "./constants/config";
 
+export async function eventOrder(req: Request) {
+  try {
+    const body = await req.json();
+
+    const { full_name, email, product_id } = body;
+    const [first_name, ...last_name_parts] = full_name.trim().split(' ');
+    const last_name = last_name_parts.join(' ');
+
+    const res = await fetch(`${DEFAULT_ENDPOINT}/wp-json/wc/v3/orders`, {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Basic ' + Buffer.from(`${WOOCOMMERCE_CONSUMER_KEY}:${WOOCOMMERCE_CONSUMER_SECRET}`).toString('base64'),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        payment_method: 'vnpay', // hoặc momo, cod, etc.
+        payment_method_title: 'Thanh toán qua VNPay',
+        set_paid: false,
+        billing: {
+          first_name,
+          last_name,
+          email,
+          address_1: 'N/A',
+          city: 'Hà Nội',
+          country: 'VN',
+        },
+        line_items: [
+          {
+            product_id,
+            quantity: 1,
+          },
+        ],
+      }),
+    });
+
+    const order = await res.json();
+
+    if (!res.ok) {
+      console.error('WooCommerce error:', order);
+      //return NextResponse.json({ error: 'Tạo đơn hàng thất bại.' }, { status: 500 });
+    }
+
+    //return NextResponse.json({
+      //order_id: order.id,
+      //payment_url: order.payment_url, // Có thể dùng để redirect hoặc tiếp tục xử lý cổng thanh toán
+    //});
+  } catch (error) {
+    console.error(error);
+    //return NextResponse.json({ error: 'Lỗi server.' }, { status: 500 });
+  }
+}
 /**
  * A method to call API with given settings
  *
@@ -89,3 +146,5 @@ export async function callApi(endpoint, method = "GET", body = null, headers = n
     }
   });
 }
+
+
