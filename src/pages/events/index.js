@@ -22,7 +22,8 @@ const Events = ({postData, headerFooter}) => {
     const [form] = Form.useForm();
     const router = useRouter();
     const [loading, setLoading] = useState(false);   
-    
+    console.log('postData',postData);
+    console.log('posts_data',postData.posts_data);
     return (
         <>
             <HeadTitle pageTitle="Events" />
@@ -37,7 +38,7 @@ const Events = ({postData, headerFooter}) => {
                     <div className="row">
                         <div className="col-lg-8 col-xl-8">
                             <h1 className="text-2xl font-bold mb-6">Các giải chạy đang diễn ra</h1>
-                            {postData?.posts_data?.map((event) => (
+                            {postData.posts_data && postData.posts_data.map((event) => (
                                 <div
                                   key={event.id}
                                   className="border p-4 rounded-xl shadow-sm bg-white"
