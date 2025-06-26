@@ -37,14 +37,10 @@ export const getEvents = async () => {
 export const getBlogPosts = async ( pageNo = 1, category = '' ) => {
 	try {
 		const res = await apiAxiosAll(`${ GET_POSTS_ENDPOINT }?page_no=${ pageNo }&category=${ category }`);
-		//console.log('post-1--:',`${ GET_POSTS_ENDPOINT }?page_no=${ pageNo }`);
-		//console.log('post-1--:',res);
-		//console.log('post-status--:',res.status);
-		if ( 200 === res?.data?.status ) {
-			//console.log('post-2--');
+		
+		if ( 200 === res?.data?.status ) {			
 			return res.data;
-		} else {
-			//console.log('post-3--');
+		} else {			
 			return {
 				posts_data: {},
 				error: 'Post not found',
@@ -54,25 +50,7 @@ export const getBlogPosts = async ( pageNo = 1, category = '' ) => {
 	catch (e) {
 		//console.log(e);
 	}
-
-	/*return await axios.get( `${ GET_POSTS_ENDPOINT }?page_no=${ pageNo }` )
-		.then( res => {
-			if ( 200 === res.data.status ) {
-				return res;
-			} else {
-				return {
-					posts_data: {},
-					error: 'Post not found',
-				};
-			}
-		} )
-		.catch( err => {
-			console.log( err.response.data.message )
-			return {
-				posts_data: {},
-				error: err.response.data.message
-			};
-		} );*/
+	
 };
 
 /**
@@ -86,20 +64,7 @@ export const getPost = async ( postSlug = '' ) => {
 		return res.data;
 	} else {
 		return [];
-	}
-
-	/*return await axios.get( `${ GET_POST_ENDPOINT }?slug=${ postSlug }&_embed` )
-		.then( res => {
-			if ( 200 === res.status ) {
-				return res.data;
-			} else {
-				return [];
-			}
-		} )
-		.catch( err => {
-			console.log( err.response.data.message )
-			return [];
-		} );*/
+	}	
 };
 
 /**
@@ -114,19 +79,7 @@ export const getPages = async () => {
 		return res.data;
 	} else {
 		return [];
-	}
-	/*return await axios.get( `${ GET_PAGES_ENDPOINT }?_embed` )
-		.then( res => {
-			if ( 200 === res.status ) {
-				return res.data;
-			} else {
-				return [];
-			}
-		} )
-		.catch( err => {
-			console.log( err.response.data.message )
-			return [];
-		} );*/
+	}	
 };
 
 /**
@@ -136,25 +89,13 @@ export const getPages = async () => {
  */
 export const getPage = async ( pageSlug = '' ) => {
 	const res = await apiAxios(`${ GET_PAGES_ENDPOINT }?slug=${ pageSlug }&_embed`);
-	//console.log('res1--',res);
+	
 	if (res && 200 === res?.status ) {
 		return res.data;
 	} else {
 		return [];
 	}
-
-	/*return await axios.get( `${ GET_PAGES_ENDPOINT }?slug=${ pageSlug }&_embed` )
-		.then( res => {
-			if ( 200 === res.status ) {
-				return res.data;
-			} else {
-				return [];
-			}
-		} )
-		.catch( err => {
-			console.log( err.response.data.message )
-			return [];
-		} );*/
+	
 };
 
 /**
@@ -164,7 +105,7 @@ export const getPage = async ( pageSlug = '' ) => {
  */
 export const getCategorys = async () => {
 	const res = await apiAxios(`${ DEFAULT_ENDPOINT }/wp/v2/categories`);
-	//console.log('res---:',res)
+	
 	if ( 200 === res.status ) {
 		return res;
 	} else {
@@ -173,25 +114,7 @@ export const getCategorys = async () => {
 			error: 'Categories not found',
 		};
 	}
-	/*return await axios.get( `${ DEFAULT_ENDPOINT }/wp/v2/categories` )
-		.then( res => {
-			return res;
-			if ( 200 === res.data.status ) {
-				return res;
-			} else {
-				return {
-					posts_data: {},
-					error: 'Categories not found',
-				};
-			}
-		} )
-		.catch( err => {
-			console.log( err.response.data.message )
-			return {
-				posts_data: {},
-				error: err.response.data.message
-			};
-		} );*/
+	
 };
 /**
  * Get Posts By Tax.
@@ -199,7 +122,6 @@ export const getCategorys = async () => {
  * @return {Promise<void>}
  */
 export const getPostsByTax = async (post_type = '', taxonomy = '', slug = '' ) => {
-
 	const res = await apiAxios(`${ DEFAULT_ENDPOINT }/camis/v1/posts-by-tax?post_type=${post_type}&taxonomy=${taxonomy}&slug=${slug}`);
 	if ( 200 === res.data.status ) {
 		return res.data?.data?.posts;
