@@ -10,6 +10,26 @@ import {
 import {apiAxios, apiAxiosAll} from "./api";
 
 /**
+ * Get Events.
+ *
+ * @return {Promise<void>}
+ */
+export const getEvents = async () => {
+	try {
+		const res = await apiAxiosAll(`${ DEFAULT_ENDPOINT }/camis/v1/events`);		
+		if ( 200 === res?.data?.status ) {			
+			return res.data;
+		} else {			
+			return {
+				posts_data: {},
+				error: 'Post not found',
+			};
+		}
+	}
+	catch (e) {		
+	}	
+};
+/**
  * Get Posts.
  *
  * @return {Promise<void>}
