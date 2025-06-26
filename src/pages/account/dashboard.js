@@ -9,24 +9,24 @@ import HeadTitle from "../../common/elements/head/HeadTitle";
 import {useRouter} from 'next/router';
 import {useEffect, useState} from "react";
 import {Spin, Button, Modal, message} from "antd";
-import {ExclamationCircleOutlined} from "@ant-design/icons";
+/*import {ExclamationCircleOutlined} from "@ant-design/icons";
 import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
-import {apiAxiosAll} from "../../utils/api";
+import {apiAxiosAll} from "../../utils/api";*/
 import Link from "next/link";
 import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/config";
 import {getHeaderFooterData} from "../../utils/layout";
 
 const Dashboard = ({headerFooter}) => {
   const router = useRouter();
-  const {query} = router;
+  /*const {query} = router;*/
   const [userInfo, setUserInfo] = useState(null);
-  const [userToken, setUserToken] = useState(null);
+  /*const [userToken, setUserToken] = useState(null);*/
   const [loading, setLoading] = useState(false);
   const [linkStrava, setLinkStrava] = useState(null);
-  const [listActivities, setListActivities] = useState(null);
-  const [accessTokenUpdate, setAccessTokenUpdate] = useState('');
+  /*const [listActivities, setListActivities] = useState(null);
+  const [accessTokenUpdate, setAccessTokenUpdate] = useState('');*/
 
-  const updateToken = async () => {
+  /*const updateToken = async () => {
     setLoading(true);
     const updateData = {
       email: userInfo.email,
@@ -82,12 +82,6 @@ const Dashboard = ({headerFooter}) => {
     }
   }, [query.code]);
 
-  const logout = () => {
-    setUserInfo(null);
-    localStorage.removeItem('race_user');
-    router.push('/account/login');
-  };
-
   const getActivities = async (token) => {
     const values = {
       client_id: STRAVA_CLIENT_ID,
@@ -108,8 +102,14 @@ const Dashboard = ({headerFooter}) => {
       const activities = await activitiesRequest.json();      
       setListActivities(activities);
     }
+  };*/
+
+  const logout = () => {
+    setUserInfo(null);
+    localStorage.removeItem('race_user');
+    router.push('/account/login');
   };
-  
+
   useEffect(() => {
     const userSubject = JSON.parse(localStorage.getItem('race_user'));
     if (userSubject) {
@@ -118,17 +118,16 @@ const Dashboard = ({headerFooter}) => {
         setLinkStrava(`https://www.strava.com/athletes/${userSubject.strava_id}`)
       }
       
-      if (userSubject.refresh_token != '') {
-        //getActivities(userSubject.refresh_token).then();
-      }
+      /*if (userSubject.refresh_token != '') {
+        getActivities(userSubject.refresh_token).then();
+      }*/
       
     }
-  }, []); 
-  
+  }, []);
 
   const urlStrava = `http://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_SITE_URL}/account/dashboard&approval_prompt=force&scope=activity:read`
 
-  const updateTokenDeauthorization = async () => {
+  /*const updateTokenDeauthorization = async () => {
     setLoading(true);
     const updateData = {
       email: userInfo.email,
@@ -148,8 +147,9 @@ const Dashboard = ({headerFooter}) => {
       }
     }
     setLoading(false);
-  };
-  const handleDeauthorization = async () => {
+  };*/
+
+  /*const handleDeauthorization = async () => {
     if (accessTokenUpdate != '') {
       const values = {
         access_token: accessTokenUpdate
@@ -178,7 +178,7 @@ const Dashboard = ({headerFooter}) => {
         message.error({content: 'Hủy kết nối strava không thành công!', duration: 2});
       }
     }
-  };
+  };*/
 
   return (
     <>
@@ -202,12 +202,9 @@ const Dashboard = ({headerFooter}) => {
                       {userInfo.strava_id != '' ? (
                         <div>Strava: <a className="row-start-2 col-span-2" target="_blank"
                                         href={linkStrava}>Click here</a>
-                          <div>
+                          {/*<div>
                             <Button
-                              type="secondary"
-                              size="large"
-                              labelalign="right"
-                              /*onClick={handleDeauthorization}*/
+                              type="secondary" size="large" labelalign="right"
                               onClick={() => {
                                 Modal.confirm({
                                   title: 'Bạn có chắc chắn muốn hủy kết nối Strava?',
@@ -222,7 +219,7 @@ const Dashboard = ({headerFooter}) => {
                             >
                               Hủy kết nối Strava
                             </Button>
-                          </div>
+                          </div>*/}
 
                         </div>
                       ) : (
@@ -236,7 +233,7 @@ const Dashboard = ({headerFooter}) => {
                   ) : (
                     <Link href="/account/login" className="btn btn-link">Login</Link>
                   )}
-                  <div>
+                  {/*<div>
                     {listActivities && (
                       <>
                         <div>List Activities:</div>
@@ -247,7 +244,7 @@ const Dashboard = ({headerFooter}) => {
                         ))}
                       </>
                     )}
-                  </div>
+                  </div>*/}
                 </div>              
 
               </Spin>
