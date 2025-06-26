@@ -21,8 +21,7 @@ import {getEvents} from "../../utils/blog";
 const Events = ({postData, headerFooter}) => {
     const [form] = Form.useForm();
     const router = useRouter();
-    const [loading, setLoading] = useState(false);
-    console.log('postData',postData);
+    const [loading, setLoading] = useState(false);   
     
     return (
         <>
@@ -48,7 +47,7 @@ const Events = ({postData, headerFooter}) => {
                                     {event.start_date} → {event.end_date}
                                   </p>
                                   <p className="text-sm text-gray-500">
-                                    Trạng thái:{' '}
+                                    Trạng thái:
                                     {event.status === 'open' ? (
                                       <span className="text-green-600">Đang mở</span>
                                     ) : (
@@ -56,22 +55,15 @@ const Events = ({postData, headerFooter}) => {
                                     )}
                                   </p>
                     
-                                  {event.status === 'open' && event.product_url && (
-                                    {/*<a
-                                      href={event.product_url}
-                                      className="inline-block mt-3 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-                                    >*/}
-                                      Tham gia ngay
-                                    {/*</a>*/}
+                                  {event.status === 'open' && event.product_url && (                                    
+                                      <div>Tham gia ngay</div>                                    
                                   )}
                                 </div>
                               ))}
                         </div>
                         <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
-                            <div className="sidebar-inner">
-                                {/*<WidgetCategory catData={allPosts} />*/}
-                                <WidgetSearch />
-                                {/*<WidgetPostList postData={allPosts} />*/}
+                            <div className="sidebar-inner">                               
+                                <WidgetSearch />                                
                                 <WidgetSocialShare />
                             </div>
                         </div>
