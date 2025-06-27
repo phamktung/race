@@ -5,22 +5,20 @@ import {
     GET_POSTS_ENDPOINT,
     DEFAULT_ENDPOINT
 } from './constants/endpoints';
-
 import {WOOCOMMERCE_CONSUMER_KEY, WOOCOMMERCE_CONSUMER_SECRET} from "./constants/config";
 
-export const createOrderWoo = async ( productId ) => {
-    const userSubject = JSON.parse(localStorage.getItem('race_user'));
+export const createOrderWoo = async ( productId, email, id, name = '' ) => {    
     const orderData = {
         payment_method: 'cod', // hoặc "bacs", "paypal", v.v.
         payment_method_title: 'Thanh toán khi giao hàng',
         set_paid: true, // true nếu bạn không cần xử lý cổng thanh toán
         billing: {
-            first_name: userSubject.name ? userSubject.name : 'Guest',
-            last_name: userSubject.id,
-            address_1: 'Địa chỉ',
+            first_name: name !== '' ? name : 'Guest',
+            last_name: id,
+            address_1: 'Thanh Trì',
             city: 'Hà Nội',
             country: 'VN',
-            email: userSubject.email,
+            email: email,
             phone: '0123456789',
         },
         line_items: [
@@ -31,7 +29,6 @@ export const createOrderWoo = async ( productId ) => {
         ]
     };
     const apiUrl = `${DEFAULT_ENDPOINT}/wc/v3/orders`;
-
     try {
         const response = await axios.post(apiUrl, orderData, {
             auth: {
@@ -49,5 +46,3 @@ export const createOrderWoo = async ( productId ) => {
         return {status: 0, data: err, message: "Không thể tham gia giải. Vui lòng thử lại."};
     }
 };
-
-
