@@ -7,19 +7,18 @@ import {
 } from './constants/endpoints';
 import {WOOCOMMERCE_CONSUMER_KEY, WOOCOMMERCE_CONSUMER_SECRET} from "./constants/config";
 
-export const createOrderWoo = async ( productId ) => {
-    const userSubject = JSON.parse(localStorage.getItem('race_user'));
+export const createOrderWoo = async ( productId, email, id, name = '' ) => {    
     const orderData = {
         payment_method: 'cod', // hoặc "bacs", "paypal", v.v.
         payment_method_title: 'Thanh toán khi giao hàng',
         set_paid: true, // true nếu bạn không cần xử lý cổng thanh toán
         billing: {
-            first_name: userSubject.name ? userSubject.name : 'Guest',
-            last_name: userSubject.id.toString(),
+            first_name: name !== '' ? name : 'Guest',
+            last_name: id.toString(),
             address_1: 'Thanh Trì',
             city: 'Hà Nội',
             country: 'VN',
-            email: userSubject.email,
+            email: email,
             phone: '0123456789',
         },
         line_items: [
