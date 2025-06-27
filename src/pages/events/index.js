@@ -31,7 +31,7 @@ const Events = ({postData, headerFooter}) => {
         const userSubject = JSON.parse(localStorage.getItem('race_user'));
         if (userSubject) {
             setLoading(true);
-            const res = await createOrderWoo(postData.posts_data[0].product_id, 4);
+            const res = await createOrderWoo(postData.posts_data[0].product_id);
             console.log('handleJoin', res)
             if (res) {
                 message.success(res.message);
