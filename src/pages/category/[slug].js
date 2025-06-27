@@ -51,15 +51,3 @@ export async function getServerSideProps({ params }) {
 	}
 
 }
-
-
-export async function getStaticPaths() {
-
-	return {
-		paths: [
-			{ params: { slug: 'blog' } },
-			{ params: { slug: 'tin-tuc' } },
-		],
-		fallback: false,
-	}
-}
