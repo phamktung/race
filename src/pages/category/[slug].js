@@ -42,7 +42,7 @@ const PostCategory = ({ postData, headerFooter }) => {
 
 export default PostCategory;
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
 	const dataLayout = await getHeaderFooterData();
 	const postParams = params.slug;
 	const postData = await getBlogPosts(1, postParams);
@@ -50,16 +50,4 @@ export async function getStaticProps({ params }) {
 		props: {postData, headerFooter: dataLayout?.data ?? {}}
 	}
 
-}
-
-
-export async function getStaticPaths() {
-
-	return {
-		paths: [
-			{ params: { slug: 'blog' } },
-			{ params: { slug: 'tin-tuc' } },
-		],
-		fallback: false,
-	}
 }
