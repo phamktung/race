@@ -42,7 +42,7 @@ const PostCategory = ({ postData, headerFooter }) => {
 
 export default PostCategory;
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
 	const dataLayout = await getHeaderFooterData();
 	const postParams = params.slug;
 	const postData = await getBlogPosts(1, postParams);
