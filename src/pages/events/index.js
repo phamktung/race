@@ -2,31 +2,17 @@ import InstagramOne from "../../common/components/instagram/InstagramOne";
 import BreadcrumbTwo from "../../common/elements/breadcrumb/breadcrumbTwo";
 import FooterThree from "../../common/elements/footer/FooterThree";
 import HeaderOne from "../../common/elements/header/HeaderOne";
-/*import { getAllPosts } from '../../../lib/api';
-import WidgetCategory from "../../common/components/sidebar/WidgetCategory";*/
 import WidgetSearch from "../../common/components/sidebar/WidgetSearch";
-/*import WidgetPostList from "../../common/components/sidebar/WidgetPostList";*/
 import WidgetSocialShare from "../../common/components/sidebar/WidgetSocialShare";
 import HeadTitle from "../../common/elements/head/HeadTitle";
 import {message, Spin} from "antd";
-/*import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
-import {apiAxiosAll} from "../../utils/api";*/
-/*import {useRouter} from 'next/router';*/
-/*import Link from 'next/link';*/
 import {useState} from "react";
 import {getHeaderFooterData} from "../../utils/layout";
 import {getEvents} from "../../utils/blog";
 import {createOrderWoo} from "../../utils/woo";
 
-
-const Events = ({postData, headerFooter}) => {
-    /*const [form] = Form.useForm();*/
-    /*const router = useRouter();*/
-    const [loading, setLoading] = useState(false);   
-    console.log('postData',postData);
-    console.log('posts_data',postData.posts_data);
-
+const Events = ({postData, headerFooter}) => {        
+    const [loading, setLoading] = useState(false);       
     const handleJoin = async () => {
         const userSubject = JSON.parse(localStorage.getItem('race_user'));
         if (userSubject) {
@@ -72,8 +58,7 @@ const Events = ({postData, headerFooter}) => {
                                     ) : (
                                       <span className="text-red-600">Đã kết thúc</span>
                                     )}
-                                  </p>
-                    
+                                  </p>                    
                                   {event.status === 'open' && event.product_id && (
                                       <div onClick={handleJoin}>Tham gia ngay</div>
                                   )}
@@ -90,13 +75,11 @@ const Events = ({postData, headerFooter}) => {
                     </div>
                 </div>
             </div>
-
             <InstagramOne parentClass="bg-color-grey" />
             <FooterThree />
         </>
     );
 }
-
 export default Events;
 
 export async function getStaticProps() {
