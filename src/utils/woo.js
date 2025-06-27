@@ -14,7 +14,7 @@ export const createOrderWoo = async ( productId, email, id, name = '' ) => {
         set_paid: true, // true nếu bạn không cần xử lý cổng thanh toán
         billing: {
             first_name: name !== '' ? name : 'Guest',
-            last_name: id.toString(),
+            last_name: id,
             address_1: 'Thanh Trì',
             city: 'Hà Nội',
             country: 'VN',
