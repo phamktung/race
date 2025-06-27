@@ -82,7 +82,7 @@ const Events = ({postData, headerFooter}) => {
 }
 export default Events;
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const dataLayout = await getHeaderFooterData();
     const postData = await getEvents();
     return {
