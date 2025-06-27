@@ -7,7 +7,7 @@ import {
 } from './constants/endpoints';
 import {WOOCOMMERCE_CONSUMER_KEY, WOOCOMMERCE_CONSUMER_SECRET} from "./constants/config";
 
-export const createOrderWoo = async ( productId, email, id, name = '' ) => {    
+export const createOrderWoo = async (productId, email, id, name) => {    
     const orderData = {
         payment_method: 'cod', // hoặc "bacs", "paypal", v.v.
         payment_method_title: 'Thanh toán khi giao hàng',
