@@ -7,11 +7,11 @@ import WidgetSocialShare from "../../common/components/sidebar/WidgetSocialShare
 import HeadTitle from "../../common/elements/head/HeadTitle";
 import {message, Spin} from "antd";
 import {useState} from "react";
-import {getHeaderFooterData} from "../../utils/layout";
 import {getEvents} from "../../utils/blog";
 import {createOrderWoo} from "../../utils/woo";
+import SidebarOne from "../../common/components/sidebar/SidebarOne";
 
-const Events = ({postData, headerFooter}) => {        
+const Events = ({postData}) => {
     const [loading, setLoading] = useState(false);       
     const handleJoin = async () => {
         const userSubject = JSON.parse(localStorage.getItem('race_user'));
@@ -30,11 +30,11 @@ const Events = ({postData, headerFooter}) => {
     return (
         <>
             <HeadTitle pageTitle="Events" />
-            <HeaderOne settings={headerFooter} />
+            <HeaderOne/>
             <BreadcrumbTwo
                 title="Events"
                 paragraph=""
-                bgImae=""
+                bgImae="url('/images/bg/bg-run.jpg')"
             />
             <div className="axil-post-list-area axil-section-gap bg-color-white">
                 <div className="container">
@@ -67,10 +67,7 @@ const Events = ({postData, headerFooter}) => {
                             </Spin>
                         </div>
                         <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
-                            <div className="sidebar-inner">                               
-                                <WidgetSearch />                                
-                                <WidgetSocialShare />
-                            </div>
+                            <SidebarOne page={'events'}/>
                         </div>
                     </div>
                 </div>
@@ -83,9 +80,8 @@ const Events = ({postData, headerFooter}) => {
 export default Events;
 
 export async function getServerSideProps() {
-    const dataLayout = await getHeaderFooterData();
     const postData = await getEvents();
     return {
-        props: {postData, headerFooter: dataLayout?.data ?? {} }
+        props: {postData}
     }
 }

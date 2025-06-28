@@ -34,6 +34,9 @@ const Menu = ({settings}) => {
           )}
         </li>
       )) : null}
+        <li>
+            <Link href="/events">Giải chạy</Link>
+        </li>
     </ul>
   )
 };
