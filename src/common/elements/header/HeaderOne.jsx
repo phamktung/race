@@ -6,8 +6,40 @@ import Menu from './Menu';
 import {Modal} from "antd";
 import WordPressSearch from "../../../pages/search";
 
-const HeaderOne = ({pClass, darkLogo, lightLogo, settings}) => {
-  //console.log('HeaderOne settings',settings);
+const HeaderOne = ({pClass}) => {
+
+  const settings = {
+    "header": {
+      "siteTitle": "API",
+      "siteDescription": "",
+      "favicon": "",
+      "headerMenuItems": [
+        {
+          "ID": 32,
+          "title": "Blog",
+          "url": "https://sukientuanngoc.com/api/category/blog/",
+          "type": "taxonomy",
+          "children": [],
+          "pageSlug": "privacy-policy",
+          "pageID": 3
+        },
+        {
+          "ID": 33,
+          "title": "Tin tức",
+          "url": "https://sukientuanngoc.com/api/category/tin-tuc/",
+          "type": "taxonomy",
+          "children": [],
+          "pageSlug": "navigation",
+          "pageID": 4
+        }
+
+      ]
+    },
+    "footer": {
+      "footerMenuItems": ""
+    }
+  };
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const onClose = () => {
     setIsModalOpen(false);

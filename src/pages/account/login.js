@@ -16,8 +16,9 @@ import {useRouter} from 'next/router';
 import Link from 'next/link';
 import {useState} from "react";
 import {getHeaderFooterData} from "../../utils/layout";
+import SidebarOne from "../../common/components/sidebar/SidebarOne";
 
-const Login = ({headerFooter}) => {
+const Login = () => {
   const [form] = Form.useForm();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -50,11 +51,11 @@ const Login = ({headerFooter}) => {
   return (
     <>
       <HeadTitle pageTitle="Login" />
-      <HeaderOne settings={headerFooter} />
+      <HeaderOne/>
       <BreadcrumbTwo
           title="Login"
           paragraph=""
-          bgImae=""
+          bgImae="url('/images/bg/bg-run.jpg')"
       />
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
@@ -95,12 +96,7 @@ const Login = ({headerFooter}) => {
               </div>
             </div>
             <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
-              <div className="sidebar-inner">
-                {/*<WidgetCategory catData={allPosts} />*/}
-                <WidgetSearch />
-                {/*<WidgetPostList postData={allPosts} />*/}
-                <WidgetSocialShare />
-              </div>
+              <SidebarOne page={'login'}/>
             </div>
           </div>
         </div>
@@ -115,8 +111,8 @@ const Login = ({headerFooter}) => {
 export default Login;
 
 export async function getStaticProps() {
-  const dataLayout = await getHeaderFooterData();
+
   return {
-    props: { headerFooter: dataLayout?.data ?? {} }
+    props: {  }
   }
 }

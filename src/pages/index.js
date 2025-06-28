@@ -16,14 +16,14 @@ import {getHeaderFooterData} from "../utils/layout";
 import SliderRace from "../common/components/slider/SliderRace";
 import {getPostsByTax, getRecentPosts} from "../utils/blog";
 
-const HomeDefault = ({allPosts, headerFooter, recent, slider}) => {
+const HomeDefault = ({allPosts, recent, slider}) => {
 
-  const videoPost = allPosts.filter(post => post.postFormat === "video");
+  //const videoPost = allPosts.filter(post => post.postFormat === "video");
 
   return (
     <>
       <HeadTitle pageTitle="AM Race" />
-      <HeaderOne postData={allPosts} settings={headerFooter}/>
+      <HeaderOne/>
       <SliderRace sliderData={slider} />
       <PostSectionOne postData={recent} title={'Bài viết mới'}/>
       {/*<PostSectionTwo postData={allPosts} adBanner={true} />*/}
@@ -44,7 +44,7 @@ export default HomeDefault;
 
 
 export async function getStaticProps() {
-  const dataLayout = await getHeaderFooterData();
+
   const recent = await getRecentPosts();
   const slider = await getPostsByTax('camis_slider','slider_cat','home');
   const allPosts = getAllPosts([
@@ -66,7 +66,7 @@ export async function getStaticProps() {
   ])
 
   return {
-    props: { allPosts, headerFooter: dataLayout?.data ?? {}, recent, slider }
+    props: { allPosts, recent, slider }
   }
 }
 

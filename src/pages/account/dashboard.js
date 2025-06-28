@@ -182,12 +182,12 @@ const Dashboard = ({headerFooter}) => {
 
   return (
     <>
-      <HeadTitle pageTitle="About Us" />
+      <HeadTitle pageTitle="Dashboard" />
       <HeaderOne settings={headerFooter} />
       <BreadcrumbTwo
         title="Dashboard"
         paragraph=""
-        bgImae=""
+        bgImae="url('/images/bg/bg-run.jpg')"
       />
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
