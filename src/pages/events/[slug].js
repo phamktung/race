@@ -15,11 +15,14 @@ import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
 import axios from "axios";
 import {WOOCOMMERCE_CONSUMER_KEY, WOOCOMMERCE_CONSUMER_SECRET} from "../../utils/constants/config";
 import {createOrderWoo} from "../../utils/woo";
+import {apiAxiosAll} from "../../utils/api";
+import Leaderboard from "../../common/components/leaderboard";
 
 const EventDetail = ({postData}) => {
   const [loading, setLoading] = useState(false);
   const [related, setRelated]  = useState([]);
   const [prod, setProd]  = useState(null);
+  console.log(postData);
 
   const getProduct = async ()=>{
     setLoading(true);
@@ -52,6 +55,9 @@ const EventDetail = ({postData}) => {
       getProduct().then()
     }
   }, [postData?.product_id]);
+
+
+
 
     const handleJoin = async () => {
         const userSubject = JSON.parse(localStorage.getItem('race_user'));
@@ -90,6 +96,8 @@ const EventDetail = ({postData}) => {
 
                   </div>
                   </Spin>
+
+                  <Leaderboard eventId={postData?.id}/>
                 {/*<h1 dangerouslySetInnerHTML={ { __html: sanitize( postData?.title?.rendered ?? '' ) } }/>*/}
 
               </div>
