@@ -16,7 +16,7 @@ import Link from "next/link";
 import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/config";
 import {getHeaderFooterData} from "../../utils/layout";
 
-const Dashboard = ({headerFooter}) => {
+const Dashboard = () => {
   const router = useRouter();
   /*const {query} = router;*/
   const [userInfo, setUserInfo] = useState(null);
@@ -183,7 +183,7 @@ const Dashboard = ({headerFooter}) => {
   return (
     <>
       <HeadTitle pageTitle="Dashboard" />
-      <HeaderOne settings={headerFooter} />
+      <HeaderOne />
       <BreadcrumbTwo
         title="Dashboard"
         paragraph=""
