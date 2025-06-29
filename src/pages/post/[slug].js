@@ -10,8 +10,9 @@ import { isEmpty } from 'lodash';
 import {useEffect, useState} from "react";
 import Blogs from "../../common/components/blog";
 import { Spin } from 'antd';
+import SidebarOne from "../../common/components/sidebar/SidebarOne";
 
-const PostDetail = ({postData, headerFooter}) => {  
+const PostDetail = ({postData}) => {
   const [loading, setLoading] = useState(false);
   const [related, setRelated]  = useState([]);
   const getRelated = async ()=>{
@@ -38,7 +39,7 @@ const PostDetail = ({postData, headerFooter}) => {
   return (
     <>
       <HeadTitle pageTitle="Category Archive"/>
-      <HeaderOne settings={headerFooter}/>
+      <HeaderOne/>
       <BreadcrumbOne title={postData?.title?.rendered ?? ''}/>
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
@@ -48,12 +49,12 @@ const PostDetail = ({postData, headerFooter}) => {
               <div dangerouslySetInnerHTML={{__html: sanitize(postData?.content?.rendered ?? '')}}/>
             </div>
             <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
-              {/*<SidebarOne dataPost={allPosts}/>*/}
+              <SidebarOne page={'post'}/>
             </div>
           </div>
         </div>
       </div>
-      {related && (
+      {related && related.length > 0 && (
         <div className={'related-post'}>
           <div className={'container'}>
             <div className="section-title"><h2 className="title">Related</h2></div>
@@ -71,27 +72,12 @@ const PostDetail = ({postData, headerFooter}) => {
 
 export default PostDetail;
 
-export async function getStaticProps({params}) { 
+export async function getServerSideProps({params}) {
   const postData = await getPost(params?.slug ?? '');
-  const dataLayout = await getHeaderFooterData();
   return {
     props: {
-      postData: postData?.[0] ?? {}, headerFooter: dataLayout?.data ?? {}
+      postData: postData?.[0] ?? {}
     }
   }
-}
-
-export async function getStaticPaths() {
-  const postAllData = await getMultiplePosts();
-  const paths = postAllData.map(post => ({
-    params: {
-      slug: post.slug
-    }
-  }));
-
-  return {
-    paths,
-    fallback: false,
-  }  
 }
 
