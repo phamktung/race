@@ -190,3 +190,18 @@ export async function getRelatedPosts(id = '', post_type = 'post',  per_page = 3
 		};
 	}
 }
+
+/**
+ * Get Event By Slug.
+ *
+ * @return {Promise<void>}
+ */
+export const getEventDetail = async ( postSlug = '' ) => {
+	const res = await apiAxiosAll(`${ DEFAULT_ENDPOINT }/camis/v1/event?slug=${ postSlug }`);
+	//console.log(res.data)
+	if ( 200 === res?.status ) {
+		return res.data.data;
+	} else {
+		return [];
+	}
+};
