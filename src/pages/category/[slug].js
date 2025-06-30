@@ -26,7 +26,6 @@ const PostCategory = ({postData}) => {
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 col-xl-8">
-                            {/*<PostLayoutTwo dataPost={postData} show="5"/>*/}
                             <Blogs posts={postData?.posts_data ?? []}/>
                             <CategoryPagination pagesCount={postData?.page_count ?? 0} postName={slug}/>
                         </div>
@@ -38,7 +37,6 @@ const PostCategory = ({postData}) => {
             </div>
             <InstagramOne parentClass="bg-color-grey"/>
             <FooterOne/>
-
         </>
     );
 }

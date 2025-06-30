@@ -31,6 +31,15 @@ const HeaderOne = ({pClass}) => {
           "children": [],
           "pageSlug": "navigation",
           "pageID": 4
+        },
+        {
+          "ID": 34,
+          "title": "Events",
+          "url": "/events",
+          "type": "page",
+          "children": [],
+          "pageSlug": "navigation",
+          "pageID": 4
         }
 
       ]
@@ -44,14 +53,12 @@ const HeaderOne = ({pClass}) => {
   const onClose = () => {
     setIsModalOpen(false);
   };
-  if (typeof window !== "undefined") {
-    var colorMode = window.localStorage.getItem('color-mode');
-  }
+
   const [accountPhoto, setAccountPhoto] = useState('/images/icons/account-icon.png');
   let userSubject = {};
   if (typeof window !== "undefined") {
-    //userSubject = JSON.parse(window.localStorage.getItem('race_user'));
-    userSubject = JSON.parse(window.sessionStorage.getItem('race_user'));
+    userSubject = JSON.parse(window.localStorage.getItem('race_user'));
+    //userSubject = JSON.parse(window.sessionStorage.getItem('race_user'));
   }
   useEffect(() => {
     if (userSubject && userSubject?.photo && userSubject?.photo !== '') {
