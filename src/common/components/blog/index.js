@@ -7,8 +7,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 const Blogs = ( { posts, type } ) => {
-  console.log('type',type);
-  console.log('posts',posts);
+  /*console.log('type',type);
+  console.log('posts',posts);*/
   if ( isEmpty( posts ) && ! isArray( posts ) ) {
     return null;
   }
@@ -24,7 +24,7 @@ const Blogs = ( { posts, type } ) => {
           return (
             <div
               key={ `${ post?.id ?? '' }-${ index }` ?? '' }
-              className="col-lg-4"
+              className="col-lg-4 blog-item mb-5"
             >
               <Link href={ url }>
                 {type === 'races' ? (
@@ -49,7 +49,7 @@ const Blogs = ( { posts, type } ) => {
 
               </Link>
               <Link href={ url }>
-                <h2 className="font-bold mb-3 text-lg text-brand-gun-powder font-bold uppercase hover:text-blue-500">{type === 'races' ? post?.name ?? '' : post?.title ?? ''}</h2>
+                <h2 className="mt-4 mb-3 fs-2 font-bold uppercase hover:text-blue-500">{type === 'races' ? post?.name ?? '' : post?.title ?? ''}</h2>
 
               </Link>
             </div>

@@ -1,4 +1,4 @@
-import WidgetInstagramPost from "./WidgetInstagramPost";
+/*import WidgetInstagramPost from "./WidgetInstagramPost";*/
 import WidgetSearch from "./WidgetSearch";
 import WidgetSocialShare from "./WidgetSocialShare";
 
@@ -8,7 +8,7 @@ const SidebarOne = ({page}) => {
     <div className="sidebar-inner">
       <WidgetSearch />
       <WidgetSocialShare />
-      <WidgetInstagramPost />
+      {/*<WidgetInstagramPost />*/}
     </div>
   );
 };

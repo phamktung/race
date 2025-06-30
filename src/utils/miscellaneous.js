@@ -60,6 +60,8 @@ export const getPathNameFromUrl = ( url = '', type = '' ) => {
 		if(subUrl && subUrl.length === 2) {
 			return `/post${subUrl[1]}`;
 		}
+	} if(type === 'page'){
+		return url;
 	} else {
 		if(subUrl && subUrl.length === 2){
 			return subUrl[1];

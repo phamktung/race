@@ -205,3 +205,20 @@ export const getEventDetail = async ( postSlug = '' ) => {
 		return [];
 	}
 };
+
+
+export const checkJoined = async ( user_id = '',  event_id = '') => {
+	try {
+		const res = await apiAxiosAll(`${ DEFAULT_ENDPOINT }/camis/v1/has-joined?user_id=${ user_id }&event_id=${event_id}`);
+		//console.log('checkJoined--',res)
+		if ( 200 === res?.status ) {
+			return res.data.joined
+		} else {
+			return false
+		}
+	}
+	catch (e) {
+		console.log('checkJoined', e)
+		return false
+	}
+};

@@ -1,36 +1,33 @@
 import InstagramOne from '../../common/components/instagram/InstagramOne';
 import FooterOne from '../../common/elements/footer/FooterOne';
 import HeadTitle from "../../common/elements/head/HeadTitle";
-import {getEventDetail} from "../../utils/blog";
+import {checkJoined, getEventDetail} from "../../utils/blog";
 import {sanitize} from "../../utils/miscellaneous";
 import BreadcrumbOne from '../../common/elements/breadcrumb/breadcrumbOne';
 
 import HeaderOne from "../../common/elements/header/HeaderOne";
-
 import {useEffect, useState} from "react";
-import {message, Spin} from 'antd';
+import {Button, message, Spin} from 'antd';
 import SidebarOne from "../../common/components/sidebar/SidebarOne";
 import {convertDateString} from "../../utils/helper";
 import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
 import axios from "axios";
 import {WOOCOMMERCE_CONSUMER_KEY, WOOCOMMERCE_CONSUMER_SECRET} from "../../utils/constants/config";
 import {createOrderWoo} from "../../utils/woo";
-import {apiAxiosAll} from "../../utils/api";
 import Leaderboard from "../../common/components/leaderboard";
 
 const EventDetail = ({postData}) => {
-  const [loading, setLoading] = useState(false);
-  const [related, setRelated]  = useState([]);
-  const [prod, setProd]  = useState(null);
-  console.log(postData);
+    const [loading, setLoading] = useState(false);
+    const [loadButton, setLoadButton] = useState(false);
 
-  const getProduct = async ()=>{
-    setLoading(true);
+    const [joined, setJoined] = useState(false);
+    const [prod, setProd] = useState(null);
+    //console.log(postData);
 
-    try {
-
-        const apiUrl = `${DEFAULT_ENDPOINT}/wc/v3/products/${postData.product_id}`;
-
+    const getProduct = async () => {
+        setLoading(true);
+        try {
+            const apiUrl = `${DEFAULT_ENDPOINT}/wc/v3/products/${postData.product_id}`;
             const response = await axios.get(apiUrl, {
                 auth: {
                     username: WOOCOMMERCE_CONSUMER_KEY,
@@ -40,25 +37,26 @@ const EventDetail = ({postData}) => {
                     'Content-Type': 'application/json'
                 }
             });
-            console.log('getProduct',response.data);
-        setProd(response.data);
+            //console.log('getProduct', response.data);
+            setProd(response.data);
 
-      setLoading(false);
-    } catch (e) {
-      //console.log('errr',e);
-      setLoading(false);
-    }
-  };
+            setLoading(false);
+        } catch (e) {
+            //console.log('errr',e);
+            setLoading(false);
+        }
+    };
 
-  useEffect(()=>{
-    if(postData?.product_id){
-      getProduct().then()
-    }
-  }, [postData?.product_id]);
+    useEffect(() => {
+        if (postData?.product_id) {
+            getProduct().then();
+            hasJoined().then();
+        }
+    }, [postData?.product_id]);
 
-  const handleJoin = async () => {
-        //const userSubject = JSON.parse(localStorage.getItem('race_user'));
-        const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
+    const handleJoin = async () => {
+        const userSubject = JSON.parse(localStorage.getItem('race_user'));
+        //const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
         if (userSubject) {
             setLoading(true);
             const res = await createOrderWoo(postData.product_id, userSubject.email, userSubject.id.toString(), userSubject.name);
@@ -72,49 +70,73 @@ const EventDetail = ({postData}) => {
         }
     }
 
-  return (
-      <>
-        <HeadTitle pageTitle={postData?.title ?? ''}/>
-        <HeaderOne/>
-        <BreadcrumbOne title={postData?.title ?? ''}/>
-        <div className="axil-post-list-area axil-section-gap bg-color-white">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-8 col-xl-8">
+    const hasJoined = async () => {
+        const userSubject = JSON.parse(localStorage.getItem('race_user'));
+        //const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
+        if (userSubject) {
+            setLoadButton(true);
+            const res = await checkJoined(userSubject.id, postData.id);
+            console.log('handleJoin', res)
+            setJoined(res);
+            //message.success(res.message);
 
-                  <Spin spinning={loading}>
-                  <div className={'content-product'}>
-                      {prod && (
-                          <>
+            setLoadButton(false);
+        }
+    }
 
-                              <div dangerouslySetInnerHTML={{__html: sanitize(prod.description ?? '')}}/>
-                          </>
-                      )}
+    return (
+        <>
+            <HeadTitle pageTitle={postData?.title ?? ''}/>
+            <HeaderOne/>
+            <BreadcrumbOne title={postData?.title ?? ''}/>
+            <div className="axil-post-list-area axil-section-gap bg-color-white">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-lg-8 col-xl-8">
 
+                            <Spin spinning={loading}>
+                                <div className={'content-product'}>
+                                    {prod && (
+                                        <>
 
-                  </div>
-                  </Spin>
+                                            <div dangerouslySetInnerHTML={{__html: sanitize(prod.description ?? '')}}/>
+                                        </>
+                                    )}
+                                </div>
+                            </Spin>
 
-                  <Leaderboard eventId={postData?.id}/>
-                {/*<h1 dangerouslySetInnerHTML={ { __html: sanitize( postData?.title?.rendered ?? '' ) } }/>*/}
+                            <Leaderboard eventId={postData?.id}/>
+                            {/*<h1 dangerouslySetInnerHTML={ { __html: sanitize( postData?.title?.rendered ?? '' ) } }/>*/}
 
-              </div>
-              <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
-                  {/*{event.status === 'open' && event.product_id && (*/}
-                  <div className={'axil-single-widget mb--30'}>
-                  <p className="text-gray-600">
-                      {convertDateString(postData.start_date)} → {convertDateString(postData.end_date)}
-                  </p>
-                  {postData.product_id && (
-                      <div onClick={handleJoin}>Tham gia ngay</div>
-                  )}
-                  </div>
-                <SidebarOne page={'post'}/>
-              </div>
+                        </div>
+                        <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
+                            {/*{event.status === 'open' && event.product_id && (*/}
+                            <div className={'axil-single-widget mb--30'}>
+                                <p className="text-gray-600">
+                                    {convertDateString(postData.start_date)} → {convertDateString(postData.end_date)}
+                                </p>
+                                {postData.product_id && (
+                                    <>
+                                        {joined ? (
+                                                <div className="text-green-600 font-semibold mb-4">
+                                                    ✅ Bạn đã tham gia giải này
+                                                </div>
+                                            ) :
+                                            <Button onClick={handleJoin} type="primary" size="large"
+                                                    disabled={loadButton}>
+                                                Tham gia ngay
+                                            </Button>
+                                        }
+
+                                    </>
+                                )}
+                            </div>
+                            <SidebarOne page={'post'}/>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        {/*{related && related.length > 0 && (
+            {/*{related && related.length > 0 && (
             <div className={'related-post'}>
               <div className={'container'}>
                 <div className="section-title"><h2 className="title">Related</h2></div>
@@ -124,20 +146,20 @@ const EventDetail = ({postData}) => {
               </div>
             </div>
         )}*/}
-        <InstagramOne parentClass="bg-color-grey"/>
-        <FooterOne/>
-      </>
-  );
+            <InstagramOne parentClass="bg-color-grey"/>
+            <FooterOne/>
+        </>
+    );
 }
 
 export default EventDetail;
 
 export async function getServerSideProps({params}) {
-  const postData = await getEventDetail(params?.slug ?? '');
-  return {
-    props: {
-      postData: postData?.[0] ?? {}
+    const postData = await getEventDetail(params?.slug ?? '');
+    return {
+        props: {
+            postData: postData?.[0] ?? {}
+        }
     }
-  }
 }
 

@@ -57,7 +57,7 @@ const PostDetail = ({postData}) => {
       {related && related.length > 0 && (
         <div className={'related-post'}>
           <div className={'container'}>
-            <div className="section-title"><h2 className="title">Related</h2></div>
+            <div className="section-title mb-5"><h2 className="title">Related</h2></div>
             <Spin spinning={loading}>
               <Blogs posts={related ?? []}/>
             </Spin>
