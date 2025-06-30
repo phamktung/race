@@ -56,15 +56,13 @@ const EventDetail = ({postData}) => {
     }
   }, [postData?.product_id]);
 
-
-
-
-    const handleJoin = async () => {
-        const userSubject = JSON.parse(localStorage.getItem('race_user'));
+  const handleJoin = async () => {
+        //const userSubject = JSON.parse(localStorage.getItem('race_user'));
+        const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
         if (userSubject) {
             setLoading(true);
             const res = await createOrderWoo(postData.product_id, userSubject.email, userSubject.id.toString(), userSubject.name);
-            console.log('handleJoin', res)
+            //console.log('handleJoin', res)
             if (res) {
                 message.success(res.message);
             }

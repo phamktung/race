@@ -32,7 +32,8 @@ const Login = () => {
         if(res.data.status == 1){
 
           message.success(res.data.message);
-          localStorage.setItem('race_user', JSON.stringify(res.data));
+          //localStorage.setItem('race_user', JSON.stringify(res.data));
+          sessionStorage.setItem('race_user', JSON.stringify(res.data));
           router.push('/account/dashboard');
 
         } else {

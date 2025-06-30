@@ -47,13 +47,14 @@ const HeaderOne = ({pClass}) => {
   if (typeof window !== "undefined") {
     var colorMode = window.localStorage.getItem('color-mode');
   }
-  const [accountPhoto, setAccountPhoto] = useState('/images/others/author.webp');
+  const [accountPhoto, setAccountPhoto] = useState('/images/icons/account-icon.png');
   let userSubject = {};
   if (typeof window !== "undefined") {
-    userSubject = JSON.parse(window.localStorage.getItem('race_user'));
+    //userSubject = JSON.parse(window.localStorage.getItem('race_user'));
+    userSubject = JSON.parse(window.sessionStorage.getItem('race_user'));
   }
   useEffect(() => {
-    if (userSubject && userSubject?.photo) {
+    if (userSubject && userSubject?.photo && userSubject?.photo !== '') {
       setAccountPhoto(userSubject?.photo);
     }
   }, [userSubject]);
@@ -100,7 +101,7 @@ const HeaderOne = ({pClass}) => {
                       <i className="fas fa-bell"/>
                     </Link>
                   </li>*/}
-                  <li>
+                  <li className={'h-account-photo'}>
                     <Link href="/account/dashboard">
                       <Image
                         width={40}
