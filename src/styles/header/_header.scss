@@ -726,3 +726,23 @@ button {
 .popup-mobilemenu-area .inner .mobile-menu-top .logo a img.light-logo {
     display: none;
 }
+.h-account-photo a{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: #e1e1e1;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+    vertical-align: middle;
+}
+.leaderboard-table-name img{width: 40px;
+    height: 40px;border-radius: 50%;}
+.leaderboard-table th {
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+.leaderboard-table td {font-size: 14px;}
+.gender-filter{width: 150px;
+    margin-left: 10px;}

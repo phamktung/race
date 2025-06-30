@@ -44,12 +44,14 @@ const Leaderboard = ({ eventId }) => {
 
     return (
         <>
+
+            <h2 className="text-xl font-bold mb-4">🏁 Bảng xếp hạng</h2>
             <div className="mb-4">
                 <label className="mr-4 font-medium">Lọc theo giới tính:</label>
                 <select
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
-                    className="border px-2 py-1 rounded"
+                    className="gender-filter px-2 py-1 rounded"
                 >
                     <option value="all">Tất cả</option>
                     <option value="male">Nam</option>
@@ -57,29 +59,28 @@ const Leaderboard = ({ eventId }) => {
                     <option value="other">Khác</option>
                 </select>
             </div>
-            <h2 className="text-xl font-bold mb-4">🏁 Bảng xếp hạng</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto leaderboard-table">
                 <table className="min-w-full bg-white border border-gray-200">
                     <thead className="bg-gray-100">
                     <tr>
                         <th className="text-left p-2">#</th>
                         <th className="text-left p-2">Người chạy</th>
-                        <th className="text-left p-2">Tổng km</th>
-                        <th className="text-left p-2">Thời gian</th>
-                        <th className="text-left p-2">Số hoạt động</th>
+                        <th className="text-center p-2">Tổng km</th>
+                        <th className="text-center p-2">Thời gian</th>
+                        <th className="text-center p-2">Số hoạt động</th>
                     </tr>
                     </thead>
                     <tbody>
                     {leaders?.map((user) => (
                         <tr key={user.user_id} className="border-t">
                             <td className="p-2 font-semibold">{user.rank}</td>
-                            <td className="p-2 flex items-center gap-2">
+                            <td className="p-2 flex items-center gap-2 leaderboard-table-name">
                                 <img src={user.avatar} className="w-8 h-8 rounded-full" />
                                 {user.name}
                             </td>
-                            <td className="p-2">{user.total_distance.toFixed(2)} km</td>
-                            <td className="p-2">{Math.floor(user.total_duration / 60)} phút</td>
-                            <td className="p-2">{user.activity_count}</td>
+                            <td className="p-2 text-center">{user.total_distance.toFixed(2)} km</td>
+                            <td className="p-2 text-center">{Math.floor(user.total_duration / 60)} phút</td>
+                            <td className="p-2 text-center">{user.activity_count}</td>
                         </tr>
                     ))}
                     </tbody>

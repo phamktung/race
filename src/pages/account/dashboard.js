@@ -106,12 +106,14 @@ const Dashboard = () => {
 
   const logout = () => {
     setUserInfo(null);
-    localStorage.removeItem('race_user');
+    //localStorage.removeItem('race_user');
+    sessionStorage.removeItem('race_user');
     router.push('/account/login');
   };
 
   useEffect(() => {
-    const userSubject = JSON.parse(localStorage.getItem('race_user'));
+    //const userSubject = JSON.parse(localStorage.getItem('race_user'));
+    const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
     if (userSubject) {
       setUserInfo(userSubject);
       if (userSubject.strava_id != '') {
