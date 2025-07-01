@@ -62,9 +62,8 @@ button {
     display: inline-block;
 }
 
-
-
-
+input[type=email], input[type=number],input[type=password], input[type=tel], input[type=text],input[type=search] {min-height: 38px;}
+.ant-input-affix-wrapper input[type=password]{min-height: 30px;}
 
 
 
