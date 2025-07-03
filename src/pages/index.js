@@ -25,32 +25,30 @@ const HomeDefault = ({ recent, slider}) => {
       <HeaderOne/>
       <SliderRace sliderData={slider} />
       <div className="axil-categories-list axil-section-gap">
-      <div className="container">
-        
-            <div className="list-categories d-flex flex-wrap">
-              {listEvents.map((data, index) => (
-                <div className="single-cat" key={index}>
-                <div className="inner">
-                <Link href={`/events/${slugify(data.slug)}`}>
-
-                    <div className="thumbnail">
-                    <Image
-                        src={data.cate_img}
-                        alt={data.cate}
-                        height={180}
-                        width={180}
-                    />
-                    </div>
-                    <div className="content">
-                      <h5 className="title">{data.cate}</h5>
-                    </div>
-                  </Link>
+        <div className="container">          
+              <div className="list-categories d-flex flex-wrap">
+                {listEvents?.map((data, index) => (
+                  <div className="single-cat" key={index}>
+                  <div className="inner">
+                  <Link href={`/events/${data.slug}`}>
+                      <div className="thumbnail">
+                      <Image
+                          src={data.cate_img}
+                          alt={data.cate}
+                          height={180}
+                          width={180}
+                      />
+                      </div>
+                      <div className="content">
+                        <h5 className="title">{data.cate}</h5>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
+                ))}
               </div>
-              ))}
-            </div>
+        </div>
       </div>
-    </div>
       <PostSectionOne postData={recent} title={'Bài viết mới'}/>
      
       
@@ -68,17 +66,13 @@ const HomeDefault = ({ recent, slider}) => {
 
 export default HomeDefault;
 
-
 export async function getStaticProps() {
-
   const recent = await getRecentPosts();
-  const slider = await getPostsByTax('camis_slider','slider_cat','home');
-  
+  const slider = await getPostsByTax('camis_slider','slider_cat','home'); 
 
   return {
     props: {  recent, slider }
   }
 }
-
 
 
