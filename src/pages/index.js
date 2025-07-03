@@ -1,5 +1,6 @@
 /*import InstagramOne from '../common/components/instagram/InstagramOne';*/
-import FooterOne from '../common/elements/footer/FooterOne';
+
+import FooterThree from "../common/elements/footer/FooterThree";
 import HeadTitle from '../common/elements/head/HeadTitle';
 import HeaderOne from '../common/elements/header/HeaderOne';
 
@@ -15,7 +16,8 @@ import SliderOne from '../common/components/slider/SliderOne';*/
 import {getHeaderFooterData} from "../utils/layout";
 import SliderRace from "../common/components/slider/SliderRace";
 import {getPostsByTax, getRecentPosts} from "../utils/blog";
-
+import Image from "next/image";
+import Link from "next/link";
 const HomeDefault = ({ recent, slider}) => { 
   const listEvents = [{cate: "Run to AM Race 2025", cate_img:"/images/run-to-amrace-2025.jpg", slug:"run-to-amrace-2025"}];
   return (
@@ -24,32 +26,30 @@ const HomeDefault = ({ recent, slider}) => {
       <HeaderOne/>
       <SliderRace sliderData={slider} />
       <div className="axil-categories-list axil-section-gap">
-      <div className="container">
-        <SectionTitleTwo title="Trending Topics" btnText="See All Topics"/>
-            <div className="list-categories d-flex flex-wrap">
-              {listEvents.map((data, index) => (
-                <div className="single-cat" key={index}>
-                <div className="inner">
-                <Link href={`/events/${slugify(data.slug)}`}>
-
-                    <div className="thumbnail">
-                    <Image
-                        src={data.cate_img}
-                        alt={data.cate}
-                        height={180}
-                        width={180}
-                    />
-                    </div>
-                    <div className="content">
-                      <h5 className="title">{data.cate}</h5>
-                    </div>
-                  </Link>
+        <div className="container">          
+              <div className="list-categories d-flex flex-wrap">
+                {listEvents?.map((data, index) => (
+                  <div className="single-cat" key={index}>
+                  <div className="inner">
+                  <Link href={`/events/${data.slug}`}>
+                      <div className="thumbnail">
+                      <Image
+                          src={data.cate_img}
+                          alt={data.cate}
+                          height={180}
+                          width={180}
+                      />
+                      </div>
+                      <div className="content">
+                        <h5 className="title">{data.cate}</h5>
+                      </div>
+                    </Link>
+                  </div>
                 </div>
+                ))}
               </div>
-              ))}
-            </div>
+        </div>
       </div>
-    </div>
       <PostSectionOne postData={recent} title={'Bài viết mới'}/>
      
       
@@ -59,25 +59,21 @@ const HomeDefault = ({ recent, slider}) => {
       {/*<PostSectionFour postData={allPosts} adBanner={true} />*/}
       {/*<PostSectionThree postData={videoPost} heading="Featured Video"/>*/}
       {/*<InstagramOne parentClass="bg-color-grey"/>*/}
-      <FooterOne />
-
+      
+      <FooterThree />
     </>
    );
 }
 
 export default HomeDefault;
 
-
 export async function getStaticProps() {
-
   const recent = await getRecentPosts();
-  const slider = await getPostsByTax('camis_slider','slider_cat','home');
-  
+  const slider = await getPostsByTax('camis_slider','slider_cat','home'); 
 
   return {
     props: {  recent, slider }
   }
 }
-
 
 
