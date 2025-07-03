@@ -1,5 +1,6 @@
 /*import InstagramOne from '../common/components/instagram/InstagramOne';*/
-import FooterOne from '../common/elements/footer/FooterOne';
+
+import FooterThree from "../common/elements/footer/FooterThree";
 import HeadTitle from '../common/elements/head/HeadTitle';
 import HeaderOne from '../common/elements/header/HeaderOne';
 
@@ -58,8 +59,8 @@ const HomeDefault = ({ recent, slider}) => {
       {/*<PostSectionFour postData={allPosts} adBanner={true} />*/}
       {/*<PostSectionThree postData={videoPost} heading="Featured Video"/>*/}
       {/*<InstagramOne parentClass="bg-color-grey"/>*/}
-      <FooterOne />
-
+      
+      <FooterThree />
     </>
    );
 }
