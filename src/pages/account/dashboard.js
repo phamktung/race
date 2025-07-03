@@ -15,6 +15,7 @@ import {apiAxiosAll} from "../../utils/api";*/
 import Link from "next/link";
 import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/config";
 import {getHeaderFooterData} from "../../utils/layout";
+import ActivityChart from "../../common/components/ActivityChart";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -222,6 +223,7 @@ const Dashboard = () => {
                               Hủy kết nối Strava
                             </Button>
                           </div>*/}
+                          <ActivityChart userId={userInfo.id} />
 
                         </div>
                       ) : (
