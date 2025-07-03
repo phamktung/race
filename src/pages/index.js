@@ -2,7 +2,7 @@
 import FooterOne from '../common/elements/footer/FooterOne';
 import HeadTitle from '../common/elements/head/HeadTitle';
 import HeaderOne from '../common/elements/header/HeaderOne';
-import { getAllPosts } from '../../lib/api';
+
 import PostSectionOne from '../common/components/post/PostSectionOne';
 /*import PostSectionTwo from '../common/components/post/PostSectionTwo';
 import PostSectionThree from '../common/components/post/PostSectionThree';*/
@@ -16,18 +16,43 @@ import {getHeaderFooterData} from "../utils/layout";
 import SliderRace from "../common/components/slider/SliderRace";
 import {getPostsByTax, getRecentPosts} from "../utils/blog";
 
-const HomeDefault = ({allPosts, recent, slider}) => {
-
-  //const videoPost = allPosts.filter(post => post.postFormat === "video");
-
+const HomeDefault = ({ recent, slider}) => { 
+  const listEvents = [{cate: "Run to AM Race 2025", cate_img:"/images/run-to-amrace-2025.jpg", slug:"run-to-amrace-2025"}];
   return (
     <>
       <HeadTitle pageTitle="AM Race" />
       <HeaderOne/>
       <SliderRace sliderData={slider} />
+      <div className="axil-categories-list axil-section-gap">
+      <div className="container">
+        <SectionTitleTwo title="Trending Topics" btnText="See All Topics"/>
+            <div className="list-categories d-flex flex-wrap">
+              {listEvents.map((data, index) => (
+                <div className="single-cat" key={index}>
+                <div className="inner">
+                <Link href={`/events/${slugify(data.slug)}`}>
+
+                    <div className="thumbnail">
+                    <Image
+                        src={data.cate_img}
+                        alt={data.cate}
+                        height={180}
+                        width={180}
+                    />
+                    </div>
+                    <div className="content">
+                      <h5 className="title">{data.cate}</h5>
+                    </div>
+                  </Link>
+                </div>
+              </div>
+              ))}
+            </div>
+      </div>
+    </div>
       <PostSectionOne postData={recent} title={'Bài viết mới'}/>
-      {/*<PostSectionTwo postData={allPosts} adBanner={true} />*/}
-      <CategoryList cateData={allPosts}/>
+     
+      
       {/*<PostSectionSix postData={allPosts} />*/}
       {/*<SocialOne />*/}
       {/*<PostSectionFive postData={allPosts}/>*/}
@@ -47,26 +72,10 @@ export async function getStaticProps() {
 
   const recent = await getRecentPosts();
   const slider = await getPostsByTax('camis_slider','slider_cat','home');
-  const allPosts = getAllPosts([
-    'id',
-    'title',
-    'featureImg',
-    'postFormat',
-    'featured',
-    'slidePost',
-    'date',
-    'slug',
-    'cate',
-    'cate_img',
-    'author_img',
-    'author_name',
-    'post_views',
-    'read_time',
-    'author_social',
-  ])
+  
 
   return {
-    props: { allPosts, recent, slider }
+    props: {  recent, slider }
   }
 }
 
