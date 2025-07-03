@@ -15,7 +15,8 @@ import SliderOne from '../common/components/slider/SliderOne';*/
 import {getHeaderFooterData} from "../utils/layout";
 import SliderRace from "../common/components/slider/SliderRace";
 import {getPostsByTax, getRecentPosts} from "../utils/blog";
-
+import Image from "next/image";
+import Link from "next/link";
 const HomeDefault = ({ recent, slider}) => { 
   const listEvents = [{cate: "Run to AM Race 2025", cate_img:"/images/run-to-amrace-2025.jpg", slug:"run-to-amrace-2025"}];
   return (
@@ -25,7 +26,7 @@ const HomeDefault = ({ recent, slider}) => {
       <SliderRace sliderData={slider} />
       <div className="axil-categories-list axil-section-gap">
       <div className="container">
-        <SectionTitleTwo title="Trending Topics" btnText="See All Topics"/>
+        
             <div className="list-categories d-flex flex-wrap">
               {listEvents.map((data, index) => (
                 <div className="single-cat" key={index}>
