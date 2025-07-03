@@ -27,6 +27,7 @@ const HomeDefault = ({ recent, slider}) => {
       <SliderRace sliderData={slider} />
       <div className="axil-categories-list axil-section-gap">
         <div className="container">          
+              <div class="section-title"><h2 class="title">Giải chạy đang diễn ra</h2></div>
               <div className="list-categories d-flex flex-wrap">
                 {listEvents?.map((data, index) => (
                   <div className="single-cat" key={index}>
