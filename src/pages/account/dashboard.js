@@ -38,7 +38,6 @@ const Dashboard = () => {
     const resUpdate = await apiAxiosAll(`${DEFAULT_ENDPOINT}/accounts/update`, updateData, 'POST');
     if (200 === resUpdate?.status) {
       if (resUpdate.data.status == 1) {
-
         message.success({content: resUpdate.data.message, duration: 2});
       } else {
 
