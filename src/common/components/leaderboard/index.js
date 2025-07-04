@@ -62,7 +62,7 @@ const Leaderboard = ({ eventId }) => {
                             <tr key={user.user_id} className="border-t">
                                 <td className="p-2 font-semibold">{user.rank}</td>
                                 <td className="p-2 flex items-center gap-2 leaderboard-table-name">
-                                    <img src={user.avatar} className="w-8 h-8 rounded-full" />
+                                    <img src={(user.avatar && user.avatar !=='avatar/athlete/large.png') ? user.avatar : "/images/slider/img-avatar-default.jpg"} className="w-8 h-8 rounded-full" />
                                     {user.name}
                                 </td>
                                 <td className="p-2 text-center">{user.total_distance.toFixed(2)} km</td>
