@@ -9,9 +9,9 @@ import HeadTitle from "../../common/elements/head/HeadTitle";
 import {useRouter} from 'next/router';
 import {useEffect, useState} from "react";
 import {Spin, Button, Modal, message} from "antd";
-/*import {ExclamationCircleOutlined} from "@ant-design/icons";
+import {ExclamationCircleOutlined} from "@ant-design/icons";
 import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
-import {apiAxiosAll} from "../../utils/api";*/
+import {apiAxiosAll} from "../../utils/api";
 import Link from "next/link";
 import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/config";
 import {getHeaderFooterData} from "../../utils/layout";
@@ -19,15 +19,15 @@ import ActivityChart from "../../common/components/ActivityChart";
 
 const Dashboard = () => {
   const router = useRouter();
-  /*const {query} = router;*/
+  const {query} = router;
   const [userInfo, setUserInfo] = useState(null);
-  /*const [userToken, setUserToken] = useState(null);*/
+  const [userToken, setUserToken] = useState(null);
   const [loading, setLoading] = useState(false);
   const [linkStrava, setLinkStrava] = useState(null);
-  /*const [listActivities, setListActivities] = useState(null);
-  const [accessTokenUpdate, setAccessTokenUpdate] = useState('');*/
+  const [listActivities, setListActivities] = useState(null);
+  const [accessTokenUpdate, setAccessTokenUpdate] = useState('');
 
-  /*const updateToken = async () => {
+  const updateToken = async () => {
     setLoading(true);
     const updateData = {
       email: userInfo.email,
@@ -103,7 +103,7 @@ const Dashboard = () => {
       const activities = await activitiesRequest.json();      
       setListActivities(activities);
     }
-  };*/
+  };
 
   const logout = () => {
     setUserInfo(null);
@@ -121,16 +121,16 @@ const Dashboard = () => {
         setLinkStrava(`https://www.strava.com/athletes/${userSubject.strava_id}`)
       }
       
-      /*if (userSubject.refresh_token != '') {
+      if (userSubject.refresh_token != '') {
         getActivities(userSubject.refresh_token).then();
-      }*/
+      }
       
     }
   }, []);
 
   const urlStrava = `http://www.strava.com/oauth/authorize?client_id=${STRAVA_CLIENT_ID}&response_type=code&redirect_uri=${process.env.NEXT_PUBLIC_SITE_URL}/account/dashboard&approval_prompt=force&scope=activity:read`
 
-  /*const updateTokenDeauthorization = async () => {
+  const updateTokenDeauthorization = async () => {
     setLoading(true);
     const updateData = {
       email: userInfo.email,
@@ -150,9 +150,9 @@ const Dashboard = () => {
       }
     }
     setLoading(false);
-  };*/
+  };
 
-  /*const handleDeauthorization = async () => {
+  const handleDeauthorization = async () => {
     if (accessTokenUpdate != '') {
       const values = {
         access_token: accessTokenUpdate
@@ -181,7 +181,7 @@ const Dashboard = () => {
         message.error({content: 'Hủy kết nối strava không thành công!', duration: 2});
       }
     }
-  };*/
+  };
 
   return (
     <>
