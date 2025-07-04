@@ -45,7 +45,7 @@ const SliderRace = ({ sliderData }) => {
           <div className="row">
             <div className="col-lg-12">
               <Slider {...slideSettings} className="slider-activation axil-slick-arrow">
-                {sliderData.slice(0, 3).map((data) => (
+                {sliderData?.slice(0, 3).map((data) => (
                   <div className="content-block" key={data.slug}>
                     {/* Start Post Thumbnail  */}
                     {data.attachment_image?.img_src[0] ?
