@@ -78,7 +78,7 @@ const Dashboard = () => {
       getToken(query.code).then();
     }
   }, [query.code]);
-
+  /*
   const getActivities = async (token) => {
     const values = {
       client_id: STRAVA_CLIENT_ID,
@@ -100,6 +100,7 @@ const Dashboard = () => {
       setListActivities(activities);
     }
   };
+  */
 
   const logout = () => {
     setUserInfo(null);
@@ -116,9 +117,11 @@ const Dashboard = () => {
         setLinkStrava(`https://www.strava.com/athletes/${userSubject.strava_id}`)
       }
       
-      //if (userSubject.refresh_token != '') {
-        //getActivities(userSubject.refresh_token).then();
-      //}
+      /*
+      if (userSubject.refresh_token != '') {
+        getActivities(userSubject.refresh_token).then();
+      }
+      */
       
     }
   }, []);
@@ -245,8 +248,8 @@ const Dashboard = () => {
 
 export default Dashboard;
 
-export async function getServerSideProps() {  
-  return {
-    props: {}
-  }
+export async function getStaticProps() {
+    return {
+        props: {}
+    }
 }
