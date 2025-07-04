@@ -108,22 +108,22 @@ const Dashboard = () => {
   const logout = () => {
     setUserInfo(null);
     localStorage.removeItem('race_user');
-    //sessionStorage.removeItem('race_user');
+    
     router.push('/account/login');
   };
 
   useEffect(() => {
     const userSubject = JSON.parse(localStorage.getItem('race_user'));
-    //const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
+    
     if (userSubject) {
       setUserInfo(userSubject);
       if (userSubject.strava_id != '') {
         setLinkStrava(`https://www.strava.com/athletes/${userSubject.strava_id}`)
       }
       
-      if (userSubject.refresh_token != '') {
-        getActivities(userSubject.refresh_token).then();
-      }
+      //if (userSubject.refresh_token != '') {
+        //getActivities(userSubject.refresh_token).then();
+      //}
       
     }
   }, []);
@@ -237,18 +237,7 @@ const Dashboard = () => {
                   ) : (
                     <Link href="/account/login" className="btn btn-link">Login</Link>
                   )}
-                  {/*<div>
-                    {listActivities && (
-                      <>
-                        <div>List Activities:</div>
-                        {listActivities?.map((item, index) => (
-                          <div key={`er-${item.id}`} className="listActivities">
-                            {item.name}
-                          </div>
-                        ))}
-                      </>
-                    )}
-                  </div>*/}
+                  
                 </div>              
 
               </Spin>
@@ -271,8 +260,8 @@ const Dashboard = () => {
 export default Dashboard;
 
 export async function getStaticProps() {
-  const dataLayout = await getHeaderFooterData(); 
+  //const dataLayout = await getHeaderFooterData(); 
   return {
-    props: { headerFooter: dataLayout?.data ?? {} }
+    props: {  }
   }
 }
