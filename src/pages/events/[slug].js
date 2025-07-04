@@ -17,126 +17,124 @@ import {createOrderWoo} from "../../utils/woo";
 import Leaderboard from "../../common/components/leaderboard";
 
 const EventDetail = ({postData}) => {
-    const [loading, setLoading] = useState(false);
-    const [loadButton, setLoadButton] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [loadButton, setLoadButton] = useState(false);
 
-    const [joined, setJoined] = useState(false);
-    const [prod, setProd] = useState(null);
-    //console.log(postData);
+  const [joined, setJoined] = useState(false);
+  const [prod, setProd] = useState(null);
+  //console.log(postData);
 
-    const getProduct = async () => {
-        setLoading(true);
-        try {
-            const apiUrl = `${DEFAULT_ENDPOINT}/wc/v3/products/${postData.product_id}`;
-            const response = await axios.get(apiUrl, {
-                auth: {
-                    username: WOOCOMMERCE_CONSUMER_KEY,
-                    password: WOOCOMMERCE_CONSUMER_SECRET
-                },
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-            //console.log('getProduct', response.data);
-            setProd(response.data);
-
-            setLoading(false);
-        } catch (e) {
-            //console.log('errr',e);
-            setLoading(false);
+  const getProduct = async () => {
+    setLoading(true);
+    try {
+      const apiUrl = `${DEFAULT_ENDPOINT}/wc/v3/products/${postData.product_id}`;
+      const response = await axios.get(apiUrl, {
+        auth: {
+          username: WOOCOMMERCE_CONSUMER_KEY,
+          password: WOOCOMMERCE_CONSUMER_SECRET
+        },
+        headers: {
+          'Content-Type': 'application/json'
         }
-    };
+      });
+      //console.log('getProduct', response.data);
+      setProd(response.data);
 
-    useEffect(() => {
-        if (postData?.product_id) {
-            getProduct().then();
-            hasJoined().then();
-        }
-    }, [postData?.product_id]);
-
-    const handleJoin = async () => {
-        const userSubject = JSON.parse(localStorage.getItem('race_user'));
-        //const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
-        if (userSubject) {
-            setLoading(true);
-            const res = await createOrderWoo(postData.product_id, userSubject.email, userSubject.id.toString(), userSubject.name);
-            //console.log('handleJoin', res)
-            if (res) {
-                message.success(res.message);
-            }
-            setLoading(false);
-        } else {
-            message.error({content: "Bạn cần đăng nhập để đăng ký tham gia giải chạy .", duration: 3});
-        }
+      setLoading(false);
+    } catch (e) {
+      //console.log('errr',e);
+      setLoading(false);
     }
+  };
 
-    const hasJoined = async () => {
-        const userSubject = JSON.parse(localStorage.getItem('race_user'));
-        //const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
-        if (userSubject) {
-            setLoadButton(true);
-            const res = await checkJoined(userSubject.id, postData.id);
-            console.log('handleJoin', res)
-            setJoined(res);
-            //message.success(res.message);
-
-            setLoadButton(false);
-        }
+  useEffect(() => {
+    if (postData?.product_id) {
+      getProduct().then();
+      hasJoined().then();
     }
+  }, [postData?.product_id]);
 
-    return (
-        <>
-            <HeadTitle pageTitle={postData?.title ?? ''}/>
-            <HeaderOne/>
-            <BreadcrumbOne title={postData?.title ?? ''}/>
-            <div className="axil-post-list-area axil-section-gap bg-color-white">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-lg-8 col-xl-8">
+  const handleJoin = async () => {
+    const userSubject = JSON.parse(localStorage.getItem('race_user'));
+    //const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
+    if (userSubject) {
+      setLoading(true);
+      const res = await createOrderWoo(postData.product_id, userSubject.email, userSubject.id.toString(), userSubject.name);
+      //console.log('handleJoin', res)
+      if (res) {
+        message.success(res.message);
+      }
+      setLoading(false);
+    } else {
+      message.error({content: "Bạn cần đăng nhập để đăng ký tham gia giải chạy .", duration: 3});
+    }
+  }
 
-                            <Spin spinning={loading}>
-                                <div className={'content-product'}>
-                                    {prod && (
-                                        <>
+  const hasJoined = async () => {
+    const userSubject = JSON.parse(localStorage.getItem('race_user'));
+    //const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
+    if (userSubject) {
+      setLoadButton(true);
+      const res = await checkJoined(userSubject.id, postData.id);
+      //console.log('handleJoin', res)
+      setJoined(res);
+      //message.success(res.message);
 
-                                            <div dangerouslySetInnerHTML={{__html: sanitize(prod.description ?? '')}}/>
-                                        </>
-                                    )}
-                                </div>
-                            </Spin>
+      setLoadButton(false);
+    }
+  }
 
-                            <Leaderboard eventId={postData?.id}/>
-                            {/*<h1 dangerouslySetInnerHTML={ { __html: sanitize( postData?.title?.rendered ?? '' ) } }/>*/}
-
-                        </div>
-                        <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
-                            {/*{event.status === 'open' && event.product_id && (*/}
-                            <div className={'axil-single-widget mb--30'}>
-                                <p className="text-gray-600">
-                                    {convertDateString(postData.start_date)} → {convertDateString(postData.end_date)}
-                                </p>
-                                {postData.product_id && (
-                                    <>
-                                        {joined ? (
-                                                <div className="text-green-600 font-semibold mb-4">
-                                                    ✅ Bạn đã tham gia giải này
-                                                </div>
-                                            ) :
-                                            <Button onClick={handleJoin} type="primary" size="large"
-                                                    disabled={loadButton}>
-                                                Tham gia ngay
-                                            </Button>
-                                        }
-
-                                    </>
-                                )}
-                            </div>
-                            <SidebarOne page={'post'}/>
-                        </div>
-                    </div>
+  return (
+    <>
+      <HeadTitle pageTitle={postData?.title ?? ''}/>
+      <HeaderOne/>
+      <BreadcrumbOne title={postData?.title ?? ''}/>
+      <div className="axil-post-list-area axil-section-gap bg-color-white">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-8 col-xl-8">
+              <Spin spinning={loading}>
+                <div className={'content-product'}>
+                  {prod && (
+                    <>
+                      <div dangerouslySetInnerHTML={{__html: sanitize(prod.description ?? '')}}/>
+                    </>
+                  )}
                 </div>
+              </Spin>
+
+              <Leaderboard eventId={postData?.id}/>
+              {/*<h1 dangerouslySetInnerHTML={ { __html: sanitize( postData?.title?.rendered ?? '' ) } }/>*/}
+
             </div>
-            {/*{related && related.length > 0 && (
+            <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
+              {/*{event.status === 'open' && event.product_id && (*/}
+              <div className={'axil-single-widget mb--30'}>
+                <p className="text-gray-600">
+                  <div>Thời gian diễn ra</div>
+                  {convertDateString(postData.start_date)} → {convertDateString(postData.end_date)}
+                </p>
+                {postData.product_id && (
+                  <>
+                    {joined ? (
+                        <div className="text-green-600 font-semibold mb-4">
+                          ✅ Bạn đã tham gia giải này
+                        </div>
+                      ) :
+                      <Button onClick={handleJoin} type="primary" size="large"
+                              disabled={loadButton} className={'w-100'}>
+                        Tham gia ngay
+                      </Button>
+                    }
+                  </>
+                )}
+              </div>
+              <SidebarOne page={'post'}/>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/*{related && related.length > 0 && (
             <div className={'related-post'}>
               <div className={'container'}>
                 <div className="section-title"><h2 className="title">Related</h2></div>
@@ -146,20 +144,20 @@ const EventDetail = ({postData}) => {
               </div>
             </div>
         )}*/}
-            <InstagramOne parentClass="bg-color-grey"/>
-            <FooterOne/>
-        </>
-    );
+      <InstagramOne parentClass="bg-color-grey"/>
+      <FooterOne/>
+    </>
+  );
 }
 
 export default EventDetail;
 
 export async function getServerSideProps({params}) {
-    const postData = await getEventDetail(params?.slug ?? '');
-    return {
-        props: {
-            postData: postData?.[0] ?? {}
-        }
+  const postData = await getEventDetail(params?.slug ?? '');
+  return {
+    props: {
+      postData: postData?.[0] ?? {}
     }
+  }
 }
 

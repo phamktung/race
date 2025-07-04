@@ -1,7 +1,9 @@
 /* ---------------------
 Instagram Styles  
 -------------------------*/
-
+.instagram-button{display: none}
+.w-100{width: 100%}
+.leaderboard-table-name img{margin-right: 10px;}
 .instagram-post-list {
     @extend %liststyle;
     margin: -9px;
@@ -32,6 +34,7 @@ Instagram Styles
             }
 
             .instagram-button {
+
                 position: absolute;
                 top: 50%;
                 left: 50%;

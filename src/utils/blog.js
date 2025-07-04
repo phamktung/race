@@ -122,12 +122,13 @@ export const getCategorys = async () => {
  * @return {Promise<void>}
  */
 export const getPostsByTax = async (post_type = '', taxonomy = '', slug = '' ) => {
-	const res = await apiAxios(`${ DEFAULT_ENDPOINT }/camis/v1/posts-by-tax?post_type=${post_type}&taxonomy=${taxonomy}&slug=${slug}`);
-	if ( 200 === res.data.status ) {
+	const res = await apiAxiosAll(`${ DEFAULT_ENDPOINT }/camis/v1/posts-by-tax?post_type=${post_type}&taxonomy=${taxonomy}&slug=${slug}`);
+
+	if ( 200 === res?.data.status ) {
 		return res.data?.data?.posts;
 	} else {
 		return {
-			posts_data: {},
+			posts_data: [],
 			error: 'Post not found',
 		};
 	}
