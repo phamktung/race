@@ -18,13 +18,13 @@ import SliderRace from "../common/components/slider/SliderRace";
 import {getPostsByTax, getRecentPosts} from "../utils/blog";
 import Image from "next/image";
 import Link from "next/link";
-const HomeDefault = ({ recent, slider}) => { 
+const HomeDefault = ({ recent}) => { 
   const listEvents = [{cate: "Run to AM Race 2025", cate_img:"/images/run-to-amrace-2025.jpg", slug:"run-to-amrace-2025"}];
   return (
     <>
       <HeadTitle pageTitle="AM Race" />
       <HeaderOne/>
-      <SliderRace sliderData={slider} />
+      
       <div className="axil-categories-list axil-section-gap">
         <div className="container">          
               <div class="section-title"><h2 class="title">Giải chạy đang diễn ra</h2></div>
@@ -70,10 +70,10 @@ export default HomeDefault;
 
 export async function getStaticProps() {
   const recent = await getRecentPosts();
-  const slider = await getPostsByTax('camis_slider','slider_cat','home'); 
+  //const slider = await getPostsByTax('camis_slider','slider_cat','home'); 
 
   return {
-    props: {  recent, slider }
+    props: {  recent }
   }
 }
 

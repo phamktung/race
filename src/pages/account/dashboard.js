@@ -26,7 +26,6 @@ const Dashboard = () => {
   const [linkStrava, setLinkStrava] = useState(null);
   const [listActivities, setListActivities] = useState(null);
   const [accessTokenUpdate, setAccessTokenUpdate] = useState('');
-
   const updateToken = async () => {
     setLoading(true);
     const updateData = {
@@ -36,11 +35,9 @@ const Dashboard = () => {
       profile: userToken.data.athlete?.profile,
       strava_id: userToken.data.athlete?.id
     };
-
     const resUpdate = await apiAxiosAll(`${DEFAULT_ENDPOINT}/accounts/update`, updateData, 'POST');
     if (200 === resUpdate?.status) {
       if (resUpdate.data.status == 1) {
-
         message.success({content: resUpdate.data.message, duration: 2});
       } else {
 
@@ -51,7 +48,6 @@ const Dashboard = () => {
     setUserInfo(null);
     localStorage.removeItem('race_user');
     router.push('/account/login');
-
   };
 
   useEffect(() => {
@@ -82,7 +78,7 @@ const Dashboard = () => {
       getToken(query.code).then();
     }
   }, [query.code]);
-
+  /*
   const getActivities = async (token) => {
     const values = {
       client_id: STRAVA_CLIENT_ID,
@@ -104,26 +100,28 @@ const Dashboard = () => {
       setListActivities(activities);
     }
   };
+  */
 
   const logout = () => {
     setUserInfo(null);
-    localStorage.removeItem('race_user');
-    //sessionStorage.removeItem('race_user');
+    localStorage.removeItem('race_user');    
     router.push('/account/login');
   };
 
   useEffect(() => {
     const userSubject = JSON.parse(localStorage.getItem('race_user'));
-    //const userSubject = JSON.parse(sessionStorage.getItem('race_user'));
+    
     if (userSubject) {
       setUserInfo(userSubject);
       if (userSubject.strava_id != '') {
         setLinkStrava(`https://www.strava.com/athletes/${userSubject.strava_id}`)
       }
       
+      /*
       if (userSubject.refresh_token != '') {
         getActivities(userSubject.refresh_token).then();
       }
+      */
       
     }
   }, []);
@@ -160,11 +158,9 @@ const Dashboard = () => {
       const deauthorization = await apiAxiosAll(`https://www.strava.com/oauth/deauthorize`, values, 'POST');
       console.log('handleDeauthorization', deauthorization);
       if (deauthorization.status === 200) {
-
         message.success({content: 'Hủy kết nối strava thành công!', duration: 2});
         setListActivities(null);
         updateTokenDeauthorization().then();
-
         const obj = {
           "id": userInfo.id,
           "name": userInfo.name,
@@ -203,8 +199,8 @@ const Dashboard = () => {
                       Xin chào {userInfo.name}
                       <div onClick={logout} style={{cursor: "pointer"}}>Logout</div>
                       {userInfo.strava_id != '' ? (
-                        <div>Strava: <a className="row-start-2 col-span-2" target="_blank"
-                                        href={linkStrava}>Click here</a>
+                        <div>
+                        Strava: <a className="row-start-2 col-span-2" target="_blank" href={linkStrava}>Click here</a>
                           {/*<div>
                             <Button
                               type="secondary" size="large" labelalign="right"
@@ -224,33 +220,15 @@ const Dashboard = () => {
                             </Button>
                           </div>*/}
                           <ActivityChart userId={userInfo.id} />
-
                         </div>
                       ) : (
-                        <a
-                          href={urlStrava}>
-                          Connect With Strava
-                        </a>
+                        <a href={urlStrava}>Connect With Strava</a>
                       )}
-
                     </>
                   ) : (
                     <Link href="/account/login" className="btn btn-link">Login</Link>
-                  )}
-                  {/*<div>
-                    {listActivities && (
-                      <>
-                        <div>List Activities:</div>
-                        {listActivities?.map((item, index) => (
-                          <div key={`er-${item.id}`} className="listActivities">
-                            {item.name}
-                          </div>
-                        ))}
-                      </>
-                    )}
-                  </div>*/}
-                </div>              
-
+                  )}                  
+                </div> 
               </Spin>
             </div>
             <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
@@ -271,8 +249,7 @@ const Dashboard = () => {
 export default Dashboard;
 
 export async function getStaticProps() {
-  const dataLayout = await getHeaderFooterData(); 
-  return {
-    props: { headerFooter: dataLayout?.data ?? {} }
-  }
+    return {
+        props: {}
+    }
 }
