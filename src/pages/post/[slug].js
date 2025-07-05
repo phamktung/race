@@ -1,12 +1,10 @@
 import InstagramOne from '../../common/components/instagram/InstagramOne';
 import FooterOne from '../../common/elements/footer/FooterOne';
 import HeadTitle from "../../common/elements/head/HeadTitle";
-import {getMultiplePosts, getPost, getRelatedPosts} from "../../utils/blog";
+import {getPost, getRelatedPosts} from "../../utils/blog";
 import {sanitize} from "../../utils/miscellaneous";
 import BreadcrumbOne from '../../common/elements/breadcrumb/breadcrumbOne';
-import {getHeaderFooterData} from "../../utils/layout";
 import HeaderOne from "../../common/elements/header/HeaderOne";
-import { isEmpty } from 'lodash';
 import {useEffect, useState} from "react";
 import Blogs from "../../common/components/blog";
 import { Spin } from 'antd';
@@ -38,14 +36,13 @@ const PostDetail = ({postData}) => {
   
   return (
     <>
-      <HeadTitle pageTitle="Category Archive"/>
+      <HeadTitle pageTitle={postData?.title?.rendered ?? ''}/>
       <HeaderOne/>
       <BreadcrumbOne title={postData?.title?.rendered ?? ''}/>
-      <div className="axil-post-list-area axil-section-gap bg-color-white">
+      <div className="axil-section-gap bg-color-white">
         <div className="container">
           <div className="row">
             <div className="col-lg-8 col-xl-8">
-              {/*<h1 dangerouslySetInnerHTML={ { __html: sanitize( postData?.title?.rendered ?? '' ) } }/>*/}
               <div dangerouslySetInnerHTML={{__html: sanitize(postData?.content?.rendered ?? '')}}/>
             </div>
             <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">

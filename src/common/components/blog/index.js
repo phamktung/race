@@ -49,7 +49,7 @@ const Blogs = ( { posts, type } ) => {
 
               </Link>
               <Link href={ url }>
-                <h2 className="mt-4 mb-3 hover-text-green">{type === 'races' ? post?.name ?? '' : post?.title ?? ''}</h2>
+                <h4 className="mt-4 mb-3 hover-text-green">{type === 'races' ? post?.name ?? '' : post?.title ?? ''}</h4>
 
               </Link>
             </div>

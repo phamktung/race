@@ -1,16 +1,13 @@
-/*import InstagramOne from '../common/components/instagram/InstagramOne';*/
-
 import FooterThree from "../common/elements/footer/FooterThree";
 import HeadTitle from '../common/elements/head/HeadTitle';
 import HeaderOne from '../common/elements/header/HeaderOne';
-
 import PostSectionOne from '../common/components/post/PostSectionOne';
-
 import {getRecentPosts} from "../utils/blog";
 import Image from "next/image";
 import Link from "next/link";
 import SliderHome from "../common/components/slider/SliderHome";
 import InstagramOne from "../common/components/instagram/InstagramOne";
+
 const HomeDefault = ({ recent}) => {
   const listEvents = [{cate: "Run to AM Race 2025", cate_img:"/images/run-to-amrace-2025.jpg", slug:"run-to-amrace-2025"}];
   const slider = [
@@ -20,10 +17,10 @@ const HomeDefault = ({ recent}) => {
 
   return (
     <>
-      <HeadTitle pageTitle="AM Race" />
+      <HeadTitle pageTitle="Cộng đồng thể thao" />
       <HeaderOne/>
       <SliderHome sliderData={slider} />
-      <div className="axil-categories-list axil-section-gap">
+      <div className="axil-categories-list mt--60">
         <div className="container">          
               <div class="section-title"><h2 className="title mb-5">Giải chạy đang diễn ra</h2></div>
               <div className="list-categories d-flex flex-wrap">
@@ -60,7 +57,6 @@ export default HomeDefault;
 
 export async function getStaticProps() {
   const recent = await getRecentPosts();
-
   return {
     props: {  recent }
   }

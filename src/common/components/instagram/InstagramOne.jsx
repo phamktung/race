@@ -6,14 +6,14 @@ const InstagramOne = ({parentClass}) => {
     return (
         <div className={`axil-instagram-area axil-section-gap ${parentClass || ""}`}>
             <div className="container">
-                <div className="row">
+                {/*<div className="row">
                     <div className="col-lg-12">
                         <div className="section-title">
                             <h2 className="title">Instagram</h2>
                         </div>
                     </div>
-                </div>
-                <div className="row mt--30">
+                </div>*/}
+                <div className="row">
                     <div className="col-lg-12">
                         <ul className="instagram-post-list">
                             {InstaData.map((data) => (
