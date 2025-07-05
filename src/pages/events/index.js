@@ -20,19 +20,19 @@ const Events = ({postData}) => {
                 paragraph=""
                 bgImae="url('/images/bg/bg-run.jpg')"
             />
-            <div className="axil-post-list-area axil-section-gap bg-color-white">
+            <div className="axil-section-gap bg-color-white">
                 <div className="container">
                     <div className="row">
                         <div className="col-lg-8 col-xl-8">
 
-                                <h1 className="text-2xl font-bold mb-6">Các giải chạy đang diễn ra</h1>
+                                <h2 className="mb-6">Các giải chạy đang diễn ra</h2>
                                 {postData.posts_data && postData.posts_data.map((event) => (
                                     <div
                                         key={event.id}
                                         className="border p-4 rounded-xl shadow-sm bg-white"
                                     >
                                         <Link href={`/events/${event?.slug}/`}>
-                                            <h2 className="text-lg font-semibold">{event.title}</h2>
+                                            <h3 className="text-lg font-semibold">{event.title}</h3>
                                         </Link>
                                         <p className="text-gray-600">
                                             {convertDateString(event.start_date)} → {convertDateString(event.end_date)}
