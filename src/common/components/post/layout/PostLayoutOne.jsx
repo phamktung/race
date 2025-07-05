@@ -10,7 +10,7 @@ const PostLayoutOne = ({ postData, itemShow }) => {
     <>
       {postData.slice(0, itemShow).map((data) => (
         <div
-          className="col-lg-6 col-xl-6 col-md-12 col-12 mt--30"
+          className="col-lg-4 col-xl-4 col-md-6 col-12 mt--30"
           key={data.slug}>
           <div className="content-block content-direction-column post-horizontal thumb-border-rounded">
             <div className="post-content">

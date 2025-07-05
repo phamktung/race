@@ -746,3 +746,11 @@ button {
 .leaderboard-table td {font-size: 14px;}
 .gender-filter{width: 150px;
     margin-left: 10px;}
+.hover-text-green{
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+.hover-text-green:hover{
+    color:#129773;
+}
