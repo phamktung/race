@@ -114,6 +114,7 @@ const EventDetail = ({postData}) => {
                   <div>Thời gian diễn ra</div>
                   {convertDateString(postData.start_date)} → {convertDateString(postData.end_date)}
                 </p>
+                <div className={'mb--20'}>Giải Miễn Phí đăng ký tham gia.</div>
                 {postData.product_id && (
                   <>
                     {joined ? (
