@@ -1,6 +1,6 @@
-# Blogar - React Nextjs Blog and React Magazine Template - Next.js Jamstack 🚀
+# Race - React Nextjs Blog and React Magazine Template 🚀
 
-A creative React Next JS template for Blog, Magazine, Tech, Travel & Tour Agencies. Blogar is a premium and trendy blog, Magazine, and Blog React Next JS template with super flexibility and a fully responsive design. It is a perfect fit for blogs, magazines, News Agencies, Travel & Tour Agencies, Business Magazines, Food, Lifestyle Brands, and Technology News websites. It is also suitable for any publishing or review websites that require a sleek, modern, and clean look with Dark Mode.
+A creative React Next JS template for Blog, Magazine, Tech, Travel & Tour Agencies.
 
 ## Template Description
 
@@ -16,10 +16,6 @@ A creative React Next JS template for Blog, Magazine, Tech, Travel & Tour Agenci
 - React Hooks used 
 - No jQuery Dependency 
 - Developer Friendly Code 👩‍💻👨‍💻
-- 5+ Homepage Variations 
-- 28+ Inner Pages 
-- 5+ Blog Layout 
-- 5+ Blog Format 
 - Creative Layout 
 - Blog Pages 
 - Dynamic Blog Single page 
@@ -47,23 +43,11 @@ A creative React Next JS template for Blog, Magazine, Tech, Travel & Tour Agenci
 - Simplicity 
 - Performance 
 
-## What Do You Get?
-
-- Next JS Files 
-- Supporting CSS, Sass, and JS files 
-- Documentation 
-
 ### Images Credit:
 
 - [Unsplash](https://unsplash.com)
 - [Shutterstock](https://www.shutterstock.com/home)
 
-### Important Note:
-
-Images and video are only for demo purposes and are not included in the download bundle.
-
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
@@ -97,4 +81,3 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# blogar

@@ -73,7 +73,7 @@ export const getPost = async ( postSlug = '' ) => {
  * @return {Promise<void>}
  */
 export const getPages = async () => {
-	const res = await apiAxios(`${ GET_PAGES_ENDPOINT }?_embed`);
+	const res = await apiAxiosAll(`${ GET_PAGES_ENDPOINT }?_embed`);
 	//console.log('res2--',res);
 	if ( res && 200 === res?.status ) {
 		return res.data;
@@ -88,7 +88,7 @@ export const getPages = async () => {
  * @return {Promise<void>}
  */
 export const getPage = async ( pageSlug = '' ) => {
-	const res = await apiAxios(`${ GET_PAGES_ENDPOINT }?slug=${ pageSlug }&_embed`);
+	const res = await apiAxiosAll(`${ GET_PAGES_ENDPOINT }?slug=${ pageSlug }&_embed`);
 	
 	if (res && 200 === res?.status ) {
 		return res.data;

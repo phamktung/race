@@ -2,208 +2,74 @@ import Image from 'next/image';
 import Link from "next/link";
 
 const FooterOne = () => {
-  if (typeof window !== "undefined") {
-    var colorMode = window.localStorage.getItem('color-mode');
-  }
-
   return (
     <div className="axil-footer-area axil-footer-style-1 footer-variation-2">
       <div className="footer-mainmenu">
         <div className="container">
           <div className="row">
-            <div className="col-lg-2 col-md-6 col-sm-6 col-12">
+            <div className="col-lg-6 col-md-6 col-sm-6 col-12">
               <div className="footer-widget">
-                <h2 className="title">World</h2>
+                <h2 className="title">Guideline</h2>
                 <div className="inner">
                   <ul className="ft-menu-list">
                     <li>
-                      U.N.
+                      <Link href="#">
+                      Hướng dẫn đăng nhập
+                      </Link>
                     </li>
                     <li>
-                      Conflicts
+                      <Link href="#">
+                      Hướng dẫn đăng ký giải đua
+                      </Link>
                     </li>
                     <li>
-                      Terrorism
+                      <Link href="#">
+                      Cập nhật kết quả giải đua từ Strava
+                      </Link>
                     </li>
                     <li>
-                      Disasters
+                      <Link href="#">
+                      Hướng dẫn thanh toán
+                      </Link>
                     </li>
                     <li>
-                      Global Economy
-                    </li>
-                    <li>
-                      Environment
-                    </li>
-                    <li>
-                      Religion
-                    </li>
-                    <li>
-                      Scandals
+                      <Link href="#">
+                      Câu hỏi thường gặp
+                      </Link>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
-            <div className="col-lg-2 col-md-6 col-sm-6 col-12">
-              <div className="footer-widget">
-                <h2 className="title">Politics</h2>
-                <div className="inner">
-                  <ul className="ft-menu-list">
-                    <li>
-                      Executive
-                    </li>
-                    <li>
-                      Senate
-                    </li>
-                    <li>
-                      House
-                    </li>
-                    <li>
-                      Judiciary
-                    </li>
-                    <li>
-                      Global Economy
-                    </li>
-                    <li>
-                      Foreign policy
-                    </li>
-                    <li>
-                      Polls
-                    </li>
-                    <li>
-                      Elections
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-6 col-sm-6 col-12">
-              <div className="footer-widget">
-                <h2 className="title">Entertainment</h2>
-                <div className="inner">
-                  <ul className="ft-menu-list">
-                    <li>
-                      Celebrity News
-                    </li>
-                    <li>
-                      Movies
-                    </li>
-                    <li>
-                      TV News
-                    </li>
-                    <li>
-                      Disasters
-                    </li>
-                    <li>
-                      Music News
-                    </li>
-                    <li>
-                      Environment
-                    </li>
-                    <li>
-                      Style News
-                    </li>
-                    <li>
-                      Entertainment Video
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-6 col-sm-6 col-12">
-              <div className="footer-widget">
-                <h2 className="title">Business</h2>
-                <div className="inner">
-                  <ul className="ft-menu-list">
-                    <li>
-                      Environment
-                    </li>
-                    <li>
-                      Conflicts
-                    </li>
-                    <li>
-                      Terrorism
-                    </li>
-                    <li>
-                      Disasters
-                    </li>
-                    <li>
-                      Global Economy
-                    </li>
-                    <li>
-                      Environment
-                    </li>
-                    <li>
-                      Religion
-                    </li>
-                    <li>
-                      Scandals
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-6 col-sm-6 col-12">
-              <div className="footer-widget">
-                <h2 className="title">Health</h2>
-                <div className="inner">
-                  <ul className="ft-menu-list">
-                    <li>
-                      Movies
-                    </li>
-                    <li>
-                      Conflicts
-                    </li>
-                    <li>
-                      Terrorism
-                    </li>
-                    <li>
-                      Disasters
-                    </li>
-                    <li>
-                      Global Economy
-                    </li>
-                    <li>
-                      Environment
-                    </li>
-                    <li>
-                      Religion
-                    </li>
-                    <li>
-                      Scandals
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-6 col-sm-6 col-12">
+            <div className="col-lg-6 col-md-6 col-sm-6 col-12">
               <div className="footer-widget">
                 <h2 className="title">About</h2>
                 <div className="inner">
                   <ul className="ft-menu-list">
                     <li>
-                      U.N.
+                      <Link href="/account/dashboard">
+                        Thông tin tài khoản
+                      </Link>
                     </li>
                     <li>
-                      Conflicts
+                      <Link href="#">
+                      Liên hệ hỗ trợ/hợp tác
+                      </Link>
                     </li>
                     <li>
-                      Terrorism
+                      <Link href="#">
+                      Photo
+                      </Link>
                     </li>
                     <li>
-                      Disasters
+                      <Link href="/category/blog">
+                        Blog - Tin tức
+                      </Link>
                     </li>
                     <li>
-                      Global Economy
-                    </li>
-                    <li>
-                      Environment
-                    </li>
-                    <li>
-                      Religion
-                    </li>
-                    <li>
-                      Scandals
+                      <Link href="/events">
+                      Sự kiện đang diễn ra
+                      </Link>
                     </li>
                   </ul>
                 </div>
@@ -219,7 +85,6 @@ const FooterOne = () => {
             <div className="col-lg-4 col-md-4">
               <div className="logo">
               <Link href="/">
-
                   <Image
                     className="dark-logo"
                     src={"/images/logo/amrace-logo.png"}
@@ -251,41 +116,13 @@ const FooterOne = () => {
               <div className="copyright-left">
                 <ul className="mainmenu justify-content-start">
                   <li>
-                    <Link href="/about">
-
-                        <span className="hover-flip-item">
-                          <span data-text="Contact Us">Contact Us</span>
-                        </span>
-
+                    <Link href="/page/lien-he">
+                          <span data-text="Contact Us">Liên hệ</span>
                     </Link>
                   </li>
                   <li>
-                    <Link href="/privacy-policy">
-
-                        <span className="hover-flip-item">
-                          <span data-text="Privacy Policy">Privacy Policy</span>
-                        </span>
-
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-
-                        <span className="hover-flip-item">
-                          <span data-text="AdChoices">AdChoices</span>
-                        </span>
-
-                    </Link>
-                  </li>
-                  <li>
-                    <Link href="#">
-
-                        <span className="hover-flip-item">
-                          <span data-text="Advertise with Us">
-                            Advertise with Us
-                          </span>
-                        </span>
-
+                    <Link href="/page/chinh-sach-bao-mat-thong-tin">
+                          <span data-text="Privacy Policy">Chính sách bảo mật thông tin</span>
                     </Link>
                   </li>
 

@@ -1,6 +1,5 @@
 import InstagramOne from "../../common/components/instagram/InstagramOne";
 import BreadcrumbTwo from "../../common/elements/breadcrumb/breadcrumbTwo";
-import FooterThree from "../../common/elements/footer/FooterThree";
 import HeaderOne from "../../common/elements/header/HeaderOne";
 import HeadTitle from "../../common/elements/head/HeadTitle";
 
@@ -8,6 +7,7 @@ import {getEvents} from "../../utils/blog";
 import SidebarOne from "../../common/components/sidebar/SidebarOne";
 import {convertDateString} from "../../utils/helper";
 import Link from "next/link";
+import FooterOne from "../../common/elements/footer/FooterOne";
 
 const Events = ({postData}) => {
 
@@ -58,7 +58,7 @@ const Events = ({postData}) => {
                 </div>
             </div>
             <InstagramOne parentClass="bg-color-grey"/>
-            <FooterThree/>
+          <FooterOne/>
         </>
     );
 }

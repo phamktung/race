@@ -1,4 +1,3 @@
-import FooterThree from "../common/elements/footer/FooterThree";
 import HeadTitle from '../common/elements/head/HeadTitle';
 import HeaderOne from '../common/elements/header/HeaderOne';
 import PostSectionOne from '../common/components/post/PostSectionOne';
@@ -7,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import SliderHome from "../common/components/slider/SliderHome";
 import InstagramOne from "../common/components/instagram/InstagramOne";
+import FooterOne from "../common/elements/footer/FooterOne";
 
 const HomeDefault = ({ recent}) => {
   const listEvents = [{cate: "Run to AM Race 2025", cate_img:"/images/run-to-amrace-2025.jpg", slug:"run-to-amrace-2025"}];
@@ -48,7 +48,7 @@ const HomeDefault = ({ recent}) => {
       </div>
       <PostSectionOne postData={recent} title={'Bài viết mới'}/>
       <InstagramOne parentClass="bg-color-grey"/>
-      <FooterThree />
+      <FooterOne/>
     </>
    );
 }
