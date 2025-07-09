@@ -32,7 +32,7 @@ export default function ClubsPage({ clubs, totalPages, currentPage }) {
                 ) : (
                   <div className="row">
                     {clubs.map((club) => (
-                      <div className="col-lg-4">
+                      <div className="col-lg-4" key={club.id}>
                       {/*<Link key={club.id} href={`/clubs/${club.slug}`}>*/}
 
                           <div className={'border rounded p-4 hover:shadow cursor-pointer'}>

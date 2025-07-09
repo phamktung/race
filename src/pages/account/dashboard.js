@@ -5,7 +5,7 @@ import HeaderOne from "../../common/elements/header/HeaderOne";
 import HeadTitle from "../../common/elements/head/HeadTitle";
 
 import {useRouter} from 'next/router';
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Spin, Button, Modal, message, Tabs} from "antd";
 import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
 import {apiAxiosAll} from "../../utils/api";
@@ -14,6 +14,7 @@ import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/conf
 const { TabPane } = Tabs;
 import ActivityChart from "../../common/components/ActivityChart";
 import FooterOne from "../../common/elements/footer/FooterOne";
+import Image from "next/image";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -176,7 +177,7 @@ const Dashboard = () => {
       }
     }
   };
-
+console.log(userInfo);
   return (
     <>
       <HeadTitle pageTitle="Dashboard" />
@@ -196,6 +197,21 @@ const Dashboard = () => {
                     <>
                       Xin chào {userInfo.name}
                       <div onClick={logout} style={{cursor: "pointer"}}>Logout</div>
+
+
+                      {userInfo.photo ? (
+                        <>
+                          <Image
+                            width={124}
+                            height={124}
+                            src={userInfo.photo}
+                            alt="Author Images"
+                          />
+                        </>
+                      ) : (
+                        <></>
+                      )}
+
                       {userInfo.strava_id != '' ? (
                         <div>
                           Strava: <a className="row-start-2 col-span-2" target="_blank" href={linkStrava}>Click here</a>
