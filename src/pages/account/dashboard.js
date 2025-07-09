@@ -1,21 +1,19 @@
 import InstagramOne from "../../common/components/instagram/InstagramOne";
 import BreadcrumbTwo from "../../common/elements/breadcrumb/breadcrumbTwo";
-import FooterThree from "../../common/elements/footer/FooterThree";
 import HeaderOne from "../../common/elements/header/HeaderOne";
-import WidgetSearch from "../../common/components/sidebar/WidgetSearch";
-import WidgetSocialShare from "../../common/components/sidebar/WidgetSocialShare";
+
 import HeadTitle from "../../common/elements/head/HeadTitle";
 
 import {useRouter} from 'next/router';
 import {useEffect, useState} from "react";
-import {Spin, Button, Modal, message} from "antd";
-import {ExclamationCircleOutlined} from "@ant-design/icons";
+import {Spin, Button, Modal, message, Tabs} from "antd";
 import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
 import {apiAxiosAll} from "../../utils/api";
 import Link from "next/link";
 import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/config";
-import {getHeaderFooterData} from "../../utils/layout";
+const { TabPane } = Tabs;
 import ActivityChart from "../../common/components/ActivityChart";
+import FooterOne from "../../common/elements/footer/FooterOne";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -190,8 +188,8 @@ const Dashboard = () => {
       />
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
-          <div className="row">
-            <div className="col-lg-8 col-xl-8">
+          <Tabs tabPosition="left" defaultActiveKey="1">
+            <TabPane tab="My Profile" key="1">
               <Spin spinning={loading}>
                 <div className="card-body">
                   {userInfo ? (
@@ -200,7 +198,7 @@ const Dashboard = () => {
                       <div onClick={logout} style={{cursor: "pointer"}}>Logout</div>
                       {userInfo.strava_id != '' ? (
                         <div>
-                        Strava: <a className="row-start-2 col-span-2" target="_blank" href={linkStrava}>Click here</a>
+                          Strava: <a className="row-start-2 col-span-2" target="_blank" href={linkStrava}>Click here</a>
                           {/*<div>
                             <Button
                               type="secondary" size="large" labelalign="right"
@@ -227,21 +225,22 @@ const Dashboard = () => {
                     </>
                   ) : (
                     <Link href="/account/login" className="btn btn-link">Login</Link>
-                  )}                  
-                </div> 
+                  )}
+                </div>
               </Spin>
-            </div>
-            <div className="col-lg-4 col-xl-4 mt_md--40 mt_sm--40">
-              <div className="sidebar-inner">                
-                <WidgetSearch />                
-                <WidgetSocialShare />
-              </div>
-            </div>
-          </div>
+            </TabPane>
+            <TabPane tab="Joining Races" key="2">
+              Joining Races
+            </TabPane>
+            <TabPane tab="Your medals" key="3">
+              Your medals
+            </TabPane>
+          </Tabs>
+
         </div>
       </div>
       <InstagramOne parentClass="bg-color-grey" />
-      <FooterThree />
+      <FooterOne/>
     </>
   );
 }
