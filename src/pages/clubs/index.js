@@ -7,6 +7,7 @@ import BreadcrumbTwo from "../../common/elements/breadcrumb/breadcrumbTwo";
 import SidebarOne from "../../common/components/sidebar/SidebarOne";
 import InstagramOne from "../../common/components/instagram/InstagramOne";
 import FooterThree from "../../common/elements/footer/FooterThree";
+import FooterOne from "../../common/elements/footer/FooterOne";
 
 export default function ClubsPage({ clubs, totalPages, currentPage }) {
 
@@ -31,8 +32,9 @@ export default function ClubsPage({ clubs, totalPages, currentPage }) {
                 ) : (
                   <div className="row">
                     {clubs.map((club) => (
-                      <Link key={club.id} href={`/clubs/${club.slug}`}>
-                        <div className="col-lg-4">
+                      <div className="col-lg-4" key={club.id}>
+                      {/*<Link key={club.id} href={`/clubs/${club.slug}`}>*/}
+
                           <div className={'border rounded p-4 hover:shadow cursor-pointer'}>
                           {club.logo && (
                             <img src={club.logo} alt={club.name} className="h-32 object-contain mb-2 w-full" />
@@ -40,8 +42,8 @@ export default function ClubsPage({ clubs, totalPages, currentPage }) {
                           <h2 className="text-lg font-semibold">{club.name}</h2>
                           {/*<div dangerouslySetInnerHTML={{__html: sanitize(club.description ?? '')}}/>*/}
                           </div>
-                        </div>
-                      </Link>
+                      {/*</Link>*/}
+                      </div>
                     ))}
                   </div>
                 )}
@@ -69,7 +71,7 @@ export default function ClubsPage({ clubs, totalPages, currentPage }) {
       </div>
 
       <InstagramOne parentClass="bg-color-grey" />
-      <FooterThree />
+      <FooterOne/>
     </>
 
   );

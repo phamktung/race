@@ -52,8 +52,8 @@ const FooterOne = () => {
                       </Link>
                     </li>
                     <li>
-                      <Link href="#">
-                      Liên hệ hỗ trợ/hợp tác
+                      <Link href="/clubs">
+                      Câu lạc bộ
                       </Link>
                     </li>
                     <li>
