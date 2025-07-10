@@ -189,33 +189,35 @@ console.log(userInfo);
       />
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
-          <Tabs tabPosition="left" defaultActiveKey="1">
-            <TabPane tab="My Profile" key="1">
-              <Spin spinning={loading}>
-                <div className="card-body">
-                  {userInfo ? (
-                    <>
-                      Xin chào {userInfo.name}
-                      <div onClick={logout} style={{cursor: "pointer"}}>Logout</div>
+          {userInfo ? (
+          <>
+          <Spin spinning={loading}>
+            <div className="card-body">
 
-
-                      {userInfo.photo ? (
-                        <>
-                          <Image
-                            width={124}
-                            height={124}
-                            src={userInfo.photo}
-                            alt="Author Images"
-                          />
-                        </>
-                      ) : (
-                        <></>
-                      )}
-
-                      {userInfo.strava_id != '' ? (
-                        <div>
-                          Strava: <a className="row-start-2 col-span-2" target="_blank" href={linkStrava}>Click here</a>
-                          {/*<div>
+                <div className={'profile-info'}>
+                  <div className={'profile-avatar'}>
+                  {userInfo.photo ? (
+                      <Image
+                        width={124}
+                        height={124}
+                        src={userInfo.photo}
+                        alt="Author Images"
+                      />
+                  ) : (
+                    <></>
+                  )}
+                  </div>
+                  <div className="user-info">
+                    <h4>
+                      {userInfo.name}
+                      <a href="javascript:" ng-click="showUpdate()">
+                        <i className="far fa-edit"></i>
+                      </a>
+                    </h4>
+                    {userInfo.strava_id != '' ? (
+                      <div>
+                        Strava connected: <a className="row-start-2 col-span-2" target="_blank" href={linkStrava}>Click here</a>
+                        {/*<div>
                             <Button
                               type="secondary" size="large" labelalign="right"
                               onClick={() => {
@@ -233,26 +235,36 @@ console.log(userInfo);
                               Hủy kết nối Strava
                             </Button>
                           </div>*/}
-                          <ActivityChart userId={userInfo.id} />
-                        </div>
-                      ) : (
-                        <a href={urlStrava}>Connect With Strava</a>
-                      )}
-                    </>
-                  ) : (
-                    <Link href="/account/login" className="btn btn-link">Login</Link>
-                  )}
+
+                      </div>
+                    ) : (
+                      <a href={urlStrava}>Connect With Strava</a>
+                    )}
+                    <div onClick={logout} style={{cursor: "pointer"}}><i className="fas fa-sign-out-alt"></i>&nbsp;Logout</div>
+                  </div>
                 </div>
-              </Spin>
+
+
+            </div>
+          </Spin>
+          <Tabs tabPosition="top" defaultActiveKey="1">
+            <TabPane tab="Hoạt động" key="1">
+              {userInfo &&
+              <ActivityChart userId={userInfo.id}/>
+              }
             </TabPane>
-            <TabPane tab="Joining Races" key="2">
+            <TabPane tab="My Profile" key="2">
+              My Profile
+            </TabPane>
+            <TabPane tab="Joining Races" key="3">
               Joining Races
             </TabPane>
-            <TabPane tab="Your medals" key="3">
-              Your medals
-            </TabPane>
-          </Tabs>
 
+          </Tabs>
+          </>
+          ) : (
+            <Link href="/account/login" className="btn btn-link">Login</Link>
+          )}
         </div>
       </div>
       <InstagramOne parentClass="bg-color-grey" />
