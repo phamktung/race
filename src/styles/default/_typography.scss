@@ -207,7 +207,7 @@ p {
 	line-height: var(--line-height-b1);
 	font-weight: var(--p-regular);
 	color: var(--color-body);
-	margin: 0 0 40px;
+	margin: 0 0 15px;
 	@media #{$sm-layout} {
 		margin: 0 0 20px;
 		font-size: var(--font-size-b2);
