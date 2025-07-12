@@ -67,7 +67,7 @@ const EventDetail = ({postData}) => {
       /*getProduct().then();*/
       hasJoined().then();
     }
-  }, [postData?.product_id]);
+  }, [postData?.product_id, userInfo]);
 
   const handleJoin = async () => {
     if (userInfo) {
