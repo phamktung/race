@@ -1,9 +1,7 @@
 import InstagramOne from "../../common/components/instagram/InstagramOne";
 import BreadcrumbTwo from "../../common/elements/breadcrumb/breadcrumbTwo";
 import HeaderOne from "../../common/elements/header/HeaderOne";
-
 import HeadTitle from "../../common/elements/head/HeadTitle";
-
 import {useRouter} from 'next/router';
 import React, {useEffect, useState} from "react";
 import {Spin, Button, Modal, message, Tabs} from "antd";
@@ -11,10 +9,10 @@ import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
 import {apiAxiosAll} from "../../utils/api";
 import Link from "next/link";
 import {STRAVA_CLIENT_ID, STRAVA_CLIENT_SECRET} from "../../utils/constants/config";
-const { TabPane } = Tabs;
+
+const {TabPane} = Tabs;
 import ActivityChart from "../../common/components/ActivityChart";
 import FooterOne from "../../common/elements/footer/FooterOne";
-import Image from "next/image";
 
 const Dashboard = () => {
   const router = useRouter();
@@ -56,7 +54,7 @@ const Dashboard = () => {
   }, [userToken]);
 
   const getToken = async (code) => {
-    if (code) {      
+    if (code) {
       setLoading(true);
       const values = {
         client_id: STRAVA_CLIENT_ID,
@@ -103,25 +101,24 @@ const Dashboard = () => {
 
   const logout = () => {
     setUserInfo(null);
-    localStorage.removeItem('race_user');    
+    localStorage.removeItem('race_user');
     router.push('/account/login');
   };
 
   useEffect(() => {
     const userSubject = JSON.parse(localStorage.getItem('race_user'));
-    
     if (userSubject) {
       setUserInfo(userSubject);
       if (userSubject.strava_id != '') {
         setLinkStrava(`https://www.strava.com/athletes/${userSubject.strava_id}`)
       }
-      
+
       /*
       if (userSubject.refresh_token != '') {
         getActivities(userSubject.refresh_token).then();
       }
       */
-      
+
     }
   }, []);
 
@@ -177,11 +174,11 @@ const Dashboard = () => {
       }
     }
   };
-console.log(userInfo);
+  //console.log(userInfo);
   return (
     <>
-      <HeadTitle pageTitle="Dashboard" />
-      <HeaderOne />
+      <HeadTitle pageTitle="Dashboard"/>
+      <HeaderOne/>
       <BreadcrumbTwo
         title="Dashboard"
         paragraph=""
@@ -190,34 +187,30 @@ console.log(userInfo);
       <div className="axil-post-list-area axil-section-gap bg-color-white">
         <div className="container">
           {userInfo ? (
-          <>
-          <Spin spinning={loading}>
-            <div className="card-body">
+            <>
+              <Spin spinning={loading}>
+                <div className="card-body">
+                  <div className={'profile-info'}>
+                    <div className={'profile-avatar'}>
+                      {(userInfo.photo && userInfo?.photo !== "avatar/athlete/large.png") ? (
+                        <img src={userInfo.photo} alt={'photo'}  />
 
-                <div className={'profile-info'}>
-                  <div className={'profile-avatar'}>
-                  {userInfo.photo ? (
-                      <Image
-                        width={124}
-                        height={124}
-                        src={userInfo.photo}
-                        alt="Author Images"
-                      />
-                  ) : (
-                    <></>
-                  )}
-                  </div>
-                  <div className="user-info">
-                    <h4>
-                      {userInfo.name}
-                      <a href="javascript:" ng-click="showUpdate()">
-                        <i className="far fa-edit"></i>
-                      </a>
-                    </h4>
-                    {userInfo.strava_id != '' ? (
-                      <div>
-                        Strava connected: <a className="row-start-2 col-span-2" target="_blank" href={linkStrava}>Click here</a>
-                        {/*<div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
+                    <div className="user-info">
+                      <h4>
+                        {userInfo.name}
+                        <a href="javascript:" ng-click="showUpdate()">
+                          <i className="far fa-edit"></i>
+                        </a>
+                      </h4>
+                      {userInfo.strava_id != '' ? (
+                        <div>
+                          Strava connected: <a className="row-start-2 col-span-2" target="_blank" href={linkStrava}>Click
+                          here</a>
+                          {/*<div>
                             <Button
                               type="secondary" size="large" labelalign="right"
                               onClick={() => {
@@ -236,38 +229,38 @@ console.log(userInfo);
                             </Button>
                           </div>*/}
 
+                        </div>
+                      ) : (
+                        <a href={urlStrava}>Connect With Strava</a>
+                      )}
+                      <div onClick={logout} style={{cursor: "pointer"}}><i
+                        className="fas fa-sign-out-alt"></i>&nbsp;Logout
                       </div>
-                    ) : (
-                      <a href={urlStrava}>Connect With Strava</a>
-                    )}
-                    <div onClick={logout} style={{cursor: "pointer"}}><i className="fas fa-sign-out-alt"></i>&nbsp;Logout</div>
+                    </div>
                   </div>
                 </div>
+              </Spin>
+              <Tabs tabPosition="top" defaultActiveKey="1">
+                <TabPane tab="Hoạt động" key="1">
+                  {userInfo &&
+                  <ActivityChart userId={userInfo.id}/>
+                  }
+                </TabPane>
+                <TabPane tab="My Profile" key="2">
+                  My Profile
+                </TabPane>
+                <TabPane tab="Joining Races" key="3">
+                  Joining Races
+                </TabPane>
 
-
-            </div>
-          </Spin>
-          <Tabs tabPosition="top" defaultActiveKey="1">
-            <TabPane tab="Hoạt động" key="1">
-              {userInfo &&
-              <ActivityChart userId={userInfo.id}/>
-              }
-            </TabPane>
-            <TabPane tab="My Profile" key="2">
-              My Profile
-            </TabPane>
-            <TabPane tab="Joining Races" key="3">
-              Joining Races
-            </TabPane>
-
-          </Tabs>
-          </>
+              </Tabs>
+            </>
           ) : (
             <Link href="/account/login" className="btn btn-link">Login</Link>
           )}
         </div>
       </div>
-      <InstagramOne parentClass="bg-color-grey" />
+      <InstagramOne parentClass="bg-color-grey"/>
       <FooterOne/>
     </>
   );
@@ -275,8 +268,14 @@ console.log(userInfo);
 
 export default Dashboard;
 
-export async function getStaticProps() {
-    return {
-        props: {}
-    }
+/*export async function getStaticProps() {
+  return {
+    props: {}
+  }
+}*/
+export async function getServerSideProps() {
+  //const postData = await getEvents();
+  return {
+    props: {}
+  }
 }

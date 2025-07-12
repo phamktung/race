@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import Image from 'next/image';
 import Link from 'next/link'
 import MobileMenu from './MobileMenu';
 import Menu from './Menu';
@@ -61,7 +60,7 @@ const HeaderOne = ({pClass}) => {
     //userSubject = JSON.parse(window.sessionStorage.getItem('race_user'));
   }
   useEffect(() => {
-    if (userSubject && userSubject?.photo && userSubject?.photo !== '') {
+    if (userSubject && userSubject?.photo && userSubject?.photo !== '' && userSubject?.photo !== "avatar/athlete/large.png") {
       setAccountPhoto(userSubject?.photo);
     }
   }, [userSubject]);
@@ -78,13 +77,7 @@ const HeaderOne = ({pClass}) => {
             <div className="col-xl-3 col-lg-3 col-md-4 col-sm-3 col-12">
               <div className="logo">
                 <Link href="/">
-                  <Image
-                    className="dark-logo"
-                    width={141}
-                    height={37}
-                    src={"/images/logo/amrace-logo.png"}
-                    alt="Cami logo"
-                  />
+                  <img src={"/images/logo/amrace-logo.png"} alt="AM Race logo" />
                 </Link>
               </div>
             </div>
@@ -98,24 +91,14 @@ const HeaderOne = ({pClass}) => {
             <div className="col-xl-3 col-lg-8 col-md-8 col-sm-9 col-12">
               <div className="header-search text-end d-flex align-items-center justify-content-end">
                 <ul className="metabar-block">
-                  <li className="icon">
+                  {/*<li className="icon">
                     <div onClick={() => {setIsModalOpen(true)}} className={'header-icon-right'}>
                       <i className="fal fa-search"/>
                     </div>
-                  </li>
-                  {/*<li className="icon">
-                    <Link href="#">
-                      <i className="fas fa-bell"/>
-                    </Link>
                   </li>*/}
                   <li className={'h-account-photo'}>
                     <Link href="/account/dashboard">
-                      <Image
-                        width={40}
-                        height={40}
-                        src={accountPhoto}
-                        alt="Author Images"
-                      />
+                      <img src={accountPhoto} alt={'photo'} width={40} height={40}/>
                     </Link>
                   </li>
                 </ul>

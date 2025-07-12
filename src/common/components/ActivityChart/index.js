@@ -21,6 +21,13 @@ const ActivityChart = ({ userId }) => {
     }, [userId, range]);
 
     const chartOptions = {
+        chart: {
+            type: 'column',
+            scrollablePlotArea: {
+                minWidth: Math.max(data.length * 40, 600), // scroll nếu quá dài
+                scrollPositionX: 1
+            },
+        },
         title: {
             text: `Biểu đồ hoạt động (${range === 'monthly' ? 'tháng' : 'ngày'})`,
         },
@@ -40,7 +47,7 @@ const ActivityChart = ({ userId }) => {
             valueSuffix: ' km',
         },
         credits: {
-            enabled: false, // ✅ Tắt logo Highcharts
+            enabled: false, // Tắt logo Highcharts
         },
         series: [
             {
@@ -66,7 +73,9 @@ const ActivityChart = ({ userId }) => {
                     <option value="monthly">Theo tháng</option>
                 </select>
             </div>
+
             <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+
         </div>
     );
 };
