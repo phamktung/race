@@ -14,7 +14,7 @@ import axios from "axios";
 import {WOOCOMMERCE_CONSUMER_KEY, WOOCOMMERCE_CONSUMER_SECRET} from "../../utils/constants/config";*/
 import {createOrderWoo} from "../../utils/woo";
 import Leaderboard from "../../common/components/leaderboard";
-import {EyeInvisibleOutlined, EyeTwoTone} from "@ant-design/icons";
+import {EyeInvisibleOutlined, EyeTwoTone, FlagOutlined} from "@ant-design/icons";
 import Link from "next/link";
 import {apiAxiosAll} from "../../utils/api";
 import {DEFAULT_ENDPOINT} from "../../utils/constants/endpoints";
@@ -157,13 +157,41 @@ const EventDetail = ({postData}) => {
         <div className="container">
           <div className="row">
             <div className="col-lg-8 col-xl-8">
-              <Spin spinning={loading}>
+              {postData.goal_distance && (
+              <div className={'mb-4'}><FlagOutlined /> Mục tiêu: {postData.goal_distance} Km</div>
+              )}
+              <div className={'row mb-5'}>
+                {postData.min_distance && postData.min_distance > 0 && (
+                  <div className={'col-lg-4 text-center mb-4'}>
+                    <p>Quãng đường tối thiểu</p>
+                    {postData.min_distance} Km
+                  </div>
+                )}
+                {postData.max_distance && postData.max_distance > 0 && (
+                  <div className={'col-lg-4 text-center mb-4'}>
+                    <p>Quãng đường tối đa</p>
+                    {postData.max_distance} Km
+                  </div>
+                )}
+                {postData.min_pace && postData.min_pace > 0 && (
+                  <div className={'col-lg-4 text-center mb-4'}>
+                    <p>Tốc độ tối thiểu</p>
+                    {postData.min_pace}:00/Km
+                  </div>
+                )}
+                {postData.max_pace && postData.max_pace > 0 && (
+                  <div className={'col-lg-4 text-center mb-4'}>
+                    <p>Tốc độ tối đa</p>
+                    {postData.max_pace}:00/Km
+                  </div>
+                )}
+              </div>
                 <div className={'content-product'}>
 
                   <div dangerouslySetInnerHTML={{__html: sanitize(postData.description ?? '')}}/>
 
                 </div>
-              </Spin>
+
 
               <Leaderboard eventId={postData?.id}/>
               {/*<h1 dangerouslySetInnerHTML={ { __html: sanitize( postData?.title?.rendered ?? '' ) } }/>*/}
